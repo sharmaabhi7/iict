@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { CTABanner } from "@/components/CTABanner";
 import { motion } from "framer-motion";
 import { Award, Users, Globe, Calendar, Shield, BookOpen } from "lucide-react";
-import founderImg from "@/assets/founder.jpg";
+import authorImg from "@/assets/anchor-speech.jpg";
 import officeImg from "@/assets/office.jpg";
 
 const milestones = [
@@ -56,7 +56,7 @@ export default function AboutPage() {
       <section className="bg-section-alt py-16 md:py-20">
         <div className="container grid items-center gap-10 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <img src={founderImg} alt="Founder" className="rounded-3xl shadow-card" loading="lazy" width={800} height={800} />
+            <img src={authorImg} alt="Author" className="rounded-3xl shadow-card" loading="lazy" width={800} height={800} />
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <span className="mb-3 inline-block text-sm font-semibold text-primary">FOUNDER'S STORY</span>
