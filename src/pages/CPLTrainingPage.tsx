@@ -13,6 +13,9 @@ import { CTABanner } from "@/components/CTABanner";
 import { CaseStudyCard } from "@/components/shared/CaseStudyCard";
 import cplImg from "@/assets/cpl-hero.jpg";
 import { Users, Globe, Plane, Award, ClipboardList, BookOpen, Send, FileCheck, Stamp, CloudSun, DollarSign, Building2 } from "lucide-react";
+import { SEO } from "@/components/shared/SEO";
+
+import { useContent } from "@/contexts/ContentContext";
 
 const stats = [
   { icon: Users, value: "2,500+", label: "Pilots Trained" },
@@ -78,8 +81,28 @@ const caseStudy = {
 };
 
 export default function CPLTrainingPage() {
+  const { content } = useContent();
+
+  const cplTrainingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Commercial Pilot License (CPL) Training",
+    "description": content.pages.cplTraining.schemaDescription || content.pages.cplTraining.description,
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.cplTraining.title}
+        description={content.pages.cplTraining.description}
+        path="/cpl-training"
+        schema={cplTrainingSchema}
+      />
       <Navbar />
       <PageHero
         badge="✈️ Become a Commercial Pilot"

@@ -5,14 +5,17 @@ import { CTABanner } from "@/components/CTABanner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/shared/SEO";
+
+import { useContent } from "@/contexts/ContentContext";
 
 const reviews = [
-  { name: "Priya Sharma", country: "Canada", text: "EduBridge made my dream of studying in Canada a reality. From university selection to visa approval, the support was exceptional.", rating: 5, before: "Confused about options, rejected twice", after: "Admitted to University of Waterloo with scholarship" },
+  { name: "Priya Sharma", country: "Canada", text: "Graam-Infotech made my dream of studying in Canada a reality. From university selection to visa approval, the support was exceptional.", rating: 5, before: "Confused about options, rejected twice", after: "Admitted to University of Waterloo with scholarship" },
   { name: "Rahul Patel", country: "USA", text: "The counsellors are incredibly knowledgeable. They helped me secure a scholarship that covered 60% of my tuition.", rating: 5, before: "Low confidence, unsure about MBA programs", after: "USC Marshall School of Business, full funding" },
-  { name: "Ananya Gupta", country: "UK", text: "I was overwhelmed by the application process, but EduBridge simplified everything. Their step-by-step guidance gave me confidence.", rating: 5, before: "No international exposure, tight budget", after: "University of Edinburgh, Chevening Scholar" },
-  { name: "Vikram Singh", country: "Australia", text: "Professional, supportive, and transparent. EduBridge helped me navigate the complex visa process with ease.", rating: 5, before: "Couldn't get MBBS seat in India", after: "University of Melbourne Medical School" },
-  { name: "Meera Krishnan", country: "New Zealand", text: "Best decision I made was choosing EduBridge. They understood my constraints and found the perfect program for me.", rating: 5, before: "Limited budget, low IELTS", after: "AUT University, now working in Auckland" },
-  { name: "Karan Joshi", country: "Ireland", text: "From day one to my first job in Dublin, EduBridge was there. They don't just get you admitted — they set you up for success.", rating: 5, before: "Overwhelmed by European options", after: "Trinity College Dublin, now at Google" },
+  { name: "Ananya Gupta", country: "UK", text: "I was overwhelmed by the application process, but Graam-Infotech simplified everything. Their step-by-step guidance gave me confidence.", rating: 5, before: "No international exposure, tight budget", after: "University of Edinburgh, Chevening Scholar" },
+  { name: "Vikram Singh", country: "Australia", text: "Professional, supportive, and transparent. Graam-Infotech helped me navigate the complex visa process with ease.", rating: 5, before: "Couldn't get MBBS seat in India", after: "University of Melbourne Medical School" },
+  { name: "Meera Krishnan", country: "New Zealand", text: "Best decision I made was choosing Graam-Infotech. They understood my constraints and found the perfect program for me.", rating: 5, before: "Limited budget, low IELTS", after: "AUT University, now working in Auckland" },
+  { name: "Karan Joshi", country: "Ireland", text: "From day one to my first job in Dublin, Graam-Infotech was there. They don't just get you admitted — they set you up for success.", rating: 5, before: "Overwhelmed by European options", after: "Trinity College Dublin, now at Google" },
 ];
 
 const countries = ["All", "Canada", "USA", "UK", "Australia", "New Zealand", "Ireland"];
@@ -24,11 +27,30 @@ const videos = [
 ];
 
 export default function TestimonialsPage() {
+  const { content } = useContent();
   const [filter, setFilter] = useState("All");
   const filtered = filter === "All" ? reviews : reviews.filter((r) => r.country === filter);
 
+  const testimonialsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": `Student Testimonials - ${content.global.siteName}`,
+    "description": content.pages.testimonials.description,
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.testimonials.title}
+        description={content.pages.testimonials.description}
+        path="/testimonials"
+        schema={testimonialsSchema}
+      />
       <Navbar />
 
       <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24">

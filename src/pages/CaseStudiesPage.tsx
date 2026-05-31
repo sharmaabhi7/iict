@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { CaseStudyCard, type CaseStudy } from "@/components/shared/CaseStudyCard";
 import { CTABanner } from "@/components/CTABanner";
 import { motion } from "framer-motion";
+import { SEO } from "@/components/shared/SEO";
+import { useContent } from "@/contexts/ContentContext";
 
 const caseStudies: CaseStudy[] = [
   { name: "Priya Sharma", country: "Canada", program: "MS Computer Science", background: "B.Tech from VIT with 8.5 CGPA, 2 years work experience at TCS. IELTS 7.5.", problem: "Rejected twice by Canadian universities due to weak SOP and misaligned course selection.", solution: "Our counsellors rewrote her SOP, identified 5 best-fit universities, and provided mock interview preparation.", result: "Admitted to University of Waterloo with CAD 10,000 scholarship. Student visa approved in 3 weeks." },
@@ -14,8 +16,28 @@ const caseStudies: CaseStudy[] = [
 ];
 
 export default function CaseStudiesPage() {
+  const { content } = useContent();
+
+  const caseStudiesSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": `Student Case Studies - ${content.global.siteName}`,
+    "description": content.pages.caseStudies.description,
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.caseStudies.title}
+        description={content.pages.caseStudies.description}
+        path="/case-studies"
+        schema={caseStudiesSchema}
+      />
       <Navbar />
 
       <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24">

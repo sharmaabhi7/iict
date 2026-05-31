@@ -22,7 +22,7 @@ export function WhyChooseUs() {
         >
           <span className="mb-3 inline-block text-sm font-semibold text-primary">WHY CHOOSE US</span>
           <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            Why 250,000+ Students Trust EduBridge
+            Why 250,000+ Students Trust Graam-Infotech
           </h2>
           <p className="mt-4 text-muted-foreground">
             We combine decades of experience with personalized care to deliver results that matter.

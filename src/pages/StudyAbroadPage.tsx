@@ -15,6 +15,7 @@ import { CaseStudyCard } from "@/components/shared/CaseStudyCard";
 import heroImg from "@/assets/hero-students.jpg";
 import officeImg from "@/assets/office.jpg";
 import { Users, Globe, Building2, Award, MapPin, BookOpen, Send, Mail, Stamp, Plane, Briefcase, DollarSign, TrendingUp } from "lucide-react";
+import { SEO } from "@/components/shared/SEO";
 
 const stats = [
   { icon: Users, value: "150,000+", label: "Students Placed" },
@@ -78,14 +79,37 @@ const caseStudy = {
   result: "Admitted to Rotman School of Management, University of Toronto. CAD 15,000 scholarship. Visa approved in 2 weeks.",
 };
 
+import { useContent } from "@/contexts/ContentContext";
+
 const gallery = [
   { src: heroImg, alt: "Students abroad", category: "Students" },
   { src: officeImg, alt: "Counselling session", category: "Campus" },
 ];
 
 export default function StudyAbroadPage() {
+  const { content } = useContent();
+
+  const studyAbroadSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Study Abroad Consultancy",
+    "description": content.pages.studyAbroad.schemaDescription || content.pages.studyAbroad.description,
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    },
+    "areaServed": "IN"
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.studyAbroad.title}
+        description={content.pages.studyAbroad.description}
+        path="/study-abroad"
+        schema={studyAbroadSchema}
+      />
       <Navbar />
       <PageHero
         badge="🌍 Study in 60+ Countries"

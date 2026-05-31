@@ -13,6 +13,9 @@ import { CTABanner } from "@/components/CTABanner";
 import { CaseStudyCard } from "@/components/shared/CaseStudyCard";
 import mbbsImg from "@/assets/mbbs-hero.jpg";
 import { Users, Globe, GraduationCap, Award, ClipboardList, BookOpen, Send, FileCheck, Stamp, Plane, Stethoscope, DollarSign, Building2 } from "lucide-react";
+import { SEO } from "@/components/shared/SEO";
+
+import { useContent } from "@/contexts/ContentContext";
 
 const stats = [
   { icon: Users, value: "25,000+", label: "Medical Students Placed" },
@@ -80,8 +83,29 @@ const caseStudy = {
 };
 
 export default function MBBSAbroadPage() {
+  const { content } = useContent();
+
+  const mbbsAbroadSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "MBBS Abroad Consultancy",
+    "description": content.pages.mbbsAbroad.schemaDescription || content.pages.mbbsAbroad.description,
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    },
+    "areaServed": "IN"
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.mbbsAbroad.title}
+        description={content.pages.mbbsAbroad.description}
+        path="/mbbs-abroad"
+        schema={mbbsAbroadSchema}
+      />
       <Navbar />
       <PageHero
         badge="🩺 NMC/WHO Recognized Universities"

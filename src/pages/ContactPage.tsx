@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { SEO } from "@/components/shared/SEO";
+import { useContent } from "@/contexts/ContentContext";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -23,12 +25,14 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const offices = [
-  { city: "Mumbai (Head Office)", address: "5th Floor, Trade Centre, Bandra Kurla Complex, Mumbai 400051", phone: "+91 22 6789 0123" },
+  { city: "Mumbai (Head Office)", address: "5th Floor, Trade Centre, BKC, Mumbai 400051", phone: "+91 22 6789 0123" },
   { city: "Delhi", address: "3rd Floor, Connaught Place, New Delhi 110001", phone: "+91 11 4567 8901" },
   { city: "Bangalore", address: "2nd Floor, MG Road, Bangalore 560001", phone: "+91 80 2345 6789" },
 ];
 
 export default function ContactPage() {
+  const { content } = useContent();
+
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", phone: "", service: "", message: "" },
@@ -39,8 +43,28 @@ export default function ContactPage() {
     form.reset();
   };
 
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": `Contact Us - ${content.global.siteName}`,
+    "description": content.pages.contact.schemaDescription || content.pages.contact.description,
+    "url": "https://iict-india.org/contact",
+    "mainEntity": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "telephone": content.global.contactPhone,
+      "email": content.global.contactEmail
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.contact.title}
+        description={content.pages.contact.description}
+        path="/contact"
+        schema={contactPageSchema}
+      />
       <Navbar />
 
       <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24">
@@ -88,11 +112,11 @@ export default function ContactPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <FormField control={form.control} name="phone" render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone</FormLabel>
-                      <FormControl><Input placeholder="+91 98765 43210" {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+                       <FormLabel>Phone</FormLabel>
+                       <FormControl><Input placeholder="+91 98972 78615" {...field} /></FormControl>
+                       <FormMessage />
+                     </FormItem>
+                   )} />
                   <FormField control={form.control} name="service" render={({ field }) => (
                     <FormItem>
                       <FormLabel>Service</FormLabel>
@@ -132,7 +156,7 @@ export default function ContactPage() {
             className="space-y-6 lg:col-span-2"
           >
             {/* WhatsApp */}
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
+             <a href="https://wa.me/919897278615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100">
                 <MessageCircle className="h-6 w-6 text-green-600" />
               </div>
@@ -148,12 +172,12 @@ export default function ContactPage() {
               <div className="space-y-4 text-sm">
                 <div className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-muted-foreground">hello@edubridge.com</span>
+                  <span className="text-muted-foreground">{content.global.contactEmail}</span>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-muted-foreground">+91 98765 43210</span>
-                </div>
+                 <div className="flex items-start gap-3">
+                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                   <span className="text-muted-foreground">{content.global.contactPhone}</span>
+                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span className="text-muted-foreground">Mon-Sat: 9:00 AM - 7:00 PM</span>
@@ -189,7 +213,7 @@ export default function ContactPage() {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              title="EduBridge Office Location"
+              title="Graam-Infotech Office Location"
             />
           </div>
         </div>

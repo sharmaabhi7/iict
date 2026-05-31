@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/shared/SEO";
+import { useContent } from "@/contexts/ContentContext";
 
 const categories = ["All", "Visa Guides", "SOP Writing", "IELTS Prep", "MBBS Abroad", "CPL Training", "Cost Calculator"];
 
@@ -20,8 +22,28 @@ const blogs = [
 ];
 
 export default function BlogPage() {
+  const { content } = useContent();
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": `${content.global.siteName} Study Abroad Blog`,
+    "description": content.pages.blog.schemaDescription || content.pages.blog.description,
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.blog.title}
+        description={content.pages.blog.description}
+        path="/blog"
+        schema={blogSchema}
+      />
       <Navbar />
 
       <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24">

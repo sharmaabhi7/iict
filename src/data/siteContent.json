@@ -1,0 +1,66 @@
+{
+  "global": {
+    "siteName": "Graam-InfoTech (IICT)",
+    "logoUrl": "https://iict-india.org/src/assets/iict-logo.jpeg",
+    "contactEmail": "info@iict-india.org",
+    "contactPhone": "+91-9897278615",
+    "addressLocality": "Aligarh",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN",
+    "keywords": "study abroad, overseas education, MBBS abroad, CPL training, visa assistance, scholarships, study in Russia, study in Georgia"
+  },
+  "hero": {
+    "title": "STUDY IN EUROPE",
+    "subtitle": "Same as [Indian Budget]",
+    "description": "Engineering | MBA | MPH | Hospitality & more"
+  },
+  "pages": {
+    "index": {
+      "title": "Expert Study Abroad Guidance & MBBS Abroad",
+      "description": "Graam-InfoTech (IICT) provides professional consultancy for overseas education, study abroad programs, MBBS in Russia and Georgia, CPL pilot training, visa support, and student counselling.",
+      "schemaDescription": "Expert study abroad guidance — university selection, visa assistance, scholarships across 60+ countries. Book free counselling today."
+    },
+    "about": {
+      "title": "About Us - 20+ Years of Student Placements",
+      "description": "Discover the story behind Graam-InfoTech (IICT). Founded in 2003 by Dr. MGA Siddiqui, we are a leading study abroad consultancy helping students achieve global admission.",
+      "schemaDescription": "Learn about Graam-InfoTech's 20+ year journey, accredited certifications, and expert study abroad counselling team led by Ph.D. physicist Dr. Mohammad Ghufran Ali Siddiqui."
+    },
+    "blog": {
+      "title": "Blog & Resources - Visa Guides, SOP Tips & MBBS Comparative Guides",
+      "description": "Read our latest articles on study visas, statement of purpose (SOP) writing, IELTS exam prep strategy, and comparison of MBBS in Russia vs Philippines.",
+      "schemaDescription": "Expert advice, guides, visa strategies, and admission tips for students wanting to study abroad or pursue MBBS overseas."
+    },
+    "cplTraining": {
+      "title": "CPL Pilot Training Abroad - Global Flight School Placements",
+      "description": "Launch your aviation career with global Commercial Pilot License (CPL) training programs. We assist with FAA, EASA, and CAD certification courses.",
+      "schemaDescription": "Assisting aspiring aviators in selecting top-tier international flight schools and securing Commercial Pilot License (CPL) certification."
+    },
+    "caseStudies": {
+      "title": "Case Studies & Success Rates - Top Study Abroad Placements",
+      "description": "Explore detailed case studies of students we helped secure admissions & full scholarships in top universities across USA, UK, Germany, and Europe."
+    },
+    "contact": {
+      "title": "Contact Us - Free Study Abroad Consultation",
+      "description": "Get in touch with Graam-InfoTech (IICT) today. Visit our offices in Aligarh, book a free video counselling session, or call our expert advisors.",
+      "schemaDescription": "Contact Graam-InfoTech (IICT) for free admissions counselling, course advice, visa support, and study abroad consultation."
+    },
+    "gallery": {
+      "title": "Student Gallery - Campus Life, Seminars & Visas",
+      "description": "Browse images of our successful students at international campuses, visa grant highlights, pre-departure briefings, and seminars."
+    },
+    "mbbsAbroad": {
+      "title": "MBBS Abroad - Low Cost NMC Approved Medical Universities",
+      "description": "Pursue MBBS in Russia, Georgia, Kazakhstan, or Egypt. Low tuition fees, NMC/WHO approved universities, and complete admission guidance.",
+      "schemaDescription": "Complete guide and direct admissions for low-cost MBBS programs in NMC-approved universities abroad."
+    },
+    "studyAbroad": {
+      "title": "Study Abroad - Overseas Education Consultants",
+      "description": "Apply to top universities in USA, UK, Canada, Australia, Germany, and 60+ countries. Get free admissions counseling and visa guidance.",
+      "schemaDescription": "Comprehensive overseas education services, from program selection to university application and student visa processing."
+    },
+    "testimonials": {
+      "title": "Student Reviews & Testimonials - Overseas Education Success Stories",
+      "description": "Read authentic feedback and reviews from students placed by Graam-InfoTech (IICT) in top medical and engineering universities globally."
+    }
+  }
+}

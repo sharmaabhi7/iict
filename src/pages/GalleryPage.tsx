@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { GalleryGrid } from "@/components/shared/GalleryGrid";
 import { CTABanner } from "@/components/CTABanner";
 import { motion } from "framer-motion";
+import { SEO } from "@/components/shared/SEO";
 import acc1 from "@/assets/Accreditations/027f443e-dd39-4d72-a4b8-4a3b6de1ce57_.jpeg";
 import acc2 from "@/assets/Accreditations/02ad33b1-a7d4-4622-9bbc-87feee7e6fb1_.jpeg";
 import acc3 from "@/assets/Accreditations/05531c66-35b6-4e0a-87d7-58fe72e8839d_.jpeg";
@@ -57,11 +58,33 @@ const galleryImages = [
   { src: acc24, alt: "Accreditation Document", category: "Accreditations" },
 ];
 
+import { useContent } from "@/contexts/ContentContext";
+
 const categories = ["All", "Certificates", "Letters", "Notices", "Projects", "Accreditations"];
 
 export default function GalleryPage() {
+  const { content } = useContent();
+
+  const gallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": `Accreditations & Recognitions - ${content.global.siteName}`,
+    "description": content.pages.gallery.description,
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": content.global.siteName,
+      "url": "https://iict-india.org"
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={content.pages.gallery.title}
+        description={content.pages.gallery.description}
+        path="/gallery"
+        schema={gallerySchema}
+      />
       <Navbar />
 
       <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24">
