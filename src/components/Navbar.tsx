@@ -8,6 +8,7 @@ import logo from "@/assets/iict-logo.jpeg"
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About IICT", href: "/about" },
+  { label: "Services", href: "/services" },
   {
     label: "Countries", href: "/countries", children: [
       { label: "Russia", href: "/countries/russia" },

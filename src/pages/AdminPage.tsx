@@ -118,31 +118,36 @@ export default function AdminPage() {
   // GitHub Publish logic
   const handlePublishToGithub = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!ghToken) {
+    
+    const cleanToken = ghToken.trim();
+    const cleanRepo = ghRepo.trim();
+    const cleanBranch = ghBranch.trim();
+
+    if (!cleanToken) {
       toast.error("Please provide a GitHub Personal Access Token to publish.");
       return;
     }
 
     // Save configuration settings
-    localStorage.setItem("iict_gh_token", ghToken);
-    localStorage.setItem("iict_gh_repo", ghRepo);
-    localStorage.setItem("iict_gh_branch", ghBranch);
+    localStorage.setItem("iict_gh_token", cleanToken);
+    localStorage.setItem("iict_gh_repo", cleanRepo);
+    localStorage.setItem("iict_gh_branch", cleanBranch);
 
     setIsPublishing(true);
     setPubStatus({ type: "info", msg: "Connecting to GitHub..." });
 
-    const ownerRepo = ghRepo.trim();
     const filePath = "src/data/siteContent.json";
-    const contentUrl = `https://api.github.com/repos/${ownerRepo}/contents/${filePath}`;
+    const contentUrl = `https://api.github.com/repos/${cleanRepo}/contents/${filePath}`;
 
     try {
       // Step 1: Fetch current file to get the SHA
       setPubStatus({ type: "info", msg: "Fetching current file metadata from repository..." });
       
-      const getRes = await fetch(`${contentUrl}?ref=${ghBranch}`, {
+      const getRes = await fetch(`${contentUrl}?ref=${cleanBranch}`, {
         headers: {
-          Authorization: `token ${ghToken}`,
+          Authorization: `Bearer ${cleanToken}`,
           Accept: "application/vnd.github.v3+json",
+          "X-GitHub-Api-Version": "2022-11-28",
         },
       });
 
@@ -150,6 +155,8 @@ export default function AdminPage() {
       if (getRes.status === 200) {
         const fileData = await getRes.json();
         sha = fileData.sha;
+      } else if (getRes.status === 401 || getRes.status === 403) {
+        throw new Error("Authentication failed. Please verify your Personal Access Token is valid and has not expired.");
       } else if (getRes.status !== 404) {
         throw new Error(`Failed to fetch file metadata. Status: ${getRes.status} (Check your repository name and branch)`);
       }
@@ -164,9 +171,9 @@ export default function AdminPage() {
       setPubStatus({ type: "info", msg: "Pushing commit directly to GitHub repository..." });
       
       const payload: any = {
-        message: ghCommitMsg,
+        message: ghCommitMsg.trim(),
         content: base64Content,
-        branch: ghBranch,
+        branch: cleanBranch,
       };
 
       if (sha) {
@@ -176,21 +183,40 @@ export default function AdminPage() {
       const putRes = await fetch(contentUrl, {
         method: "PUT",
         headers: {
-          Authorization: `token ${ghToken}`,
+          Authorization: `Bearer ${cleanToken}`,
           Accept: "application/vnd.github.v3+json",
           "Content-Type": "application/json",
+          "X-GitHub-Api-Version": "2022-11-28",
         },
         body: JSON.stringify(payload),
       });
 
       if (!putRes.ok) {
-        const errorData = await putRes.json();
-        throw new Error(errorData.message || `Git commit failed. Status: ${putRes.status}`);
+        let errorMessage = `Git commit failed. Status: ${putRes.status}`;
+        try {
+          const errorData = await putRes.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (parseErr) {
+          // Ignore parse errors
+        }
+
+        if (putRes.status === 404) {
+          throw new Error(
+            "Repository/file path not found, or token lacks write permission. " +
+            "Please ensure your token has the 'repo' scope (classic PAT) or " +
+            "'Contents: Read and write' permission (fine-grained PAT), " +
+            "and that the repository name and branch are spelled correctly."
+          );
+        } else if (putRes.status === 403 || putRes.status === 401) {
+          throw new Error(`Access forbidden or unauthorized: ${errorMessage}`);
+        } else {
+          throw new Error(errorMessage);
+        }
       }
 
       setPubStatus({
         type: "success",
-        msg: `Successfully published to GitHub! The file ${filePath} has been updated in the ${ghBranch} branch. Your VPS deployment process will sync the changes shortly.`
+        msg: `Successfully published to GitHub! The file ${filePath} has been updated in the ${cleanBranch} branch. Your VPS deployment process will sync the changes shortly.`
       });
       toast.success("Changes published globally to your GitHub repository!");
     } catch (err: any) {

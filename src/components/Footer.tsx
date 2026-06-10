@@ -1,21 +1,22 @@
 import { GraduationCap, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/iict-logo.jpeg";
+import { Link } from "react-router-dom";
 
 const quickLinks = [
-  { label: "Study in USA", href: "#" },
-  { label: "Study in UK", href: "#" },
-  { label: "Study in Canada", href: "#" },
-  { label: "Study in Australia", href: "#" },
-  { label: "Scholarships", href: "#" },
+  { label: "Study in USA", href: "/study-abroad" },
+  { label: "Study in UK", href: "/study-abroad" },
+  { label: "Study in Canada", href: "/study-abroad" },
+  { label: "Study in Australia", href: "/study-abroad" },
+  { label: "Scholarships", href: "/services" },
 ];
 
 const services = [
-  { label: "Profile Assessment", href: "#" },
-  { label: "University Selection", href: "#" },
-  { label: "Visa Assistance", href: "#" },
-  { label: "Loan Assistance", href: "#" },
-  { label: "IELTS Preparation", href: "#" },
+  { label: "Profile Assessment", href: "/services" },
+  { label: "University Selection", href: "/services" },
+  { label: "Visa Assistance", href: "/services" },
+  { label: "Loan Assistance", href: "/services" },
+  { label: "Scholarship Support", href: "/services" },
 ];
 
 export function Footer() {
@@ -25,10 +26,10 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <a href="#" className="mb-4 flex items-center gap-2.5">
+            <Link to="/" className="mb-4 flex items-center gap-2.5">
               <img src={logo} alt="Graam-Infotech Logo" className="h-10 w-auto object-contain bg-white rounded-md p-0.5 shadow-sm" />
               <span className="font-heading text-xl font-bold text-primary">Graam-Infotech</span>
-            </a>
+            </Link>
             <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
               Your trusted partner for studying abroad. Guiding students to world-class education since 2010.
             </p>
@@ -89,9 +90,9 @@ export function Footer() {
             <ul className="space-y-2.5">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <Link to={l.href} className="text-sm text-muted-foreground transition-colors hover:text-primary">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -103,9 +104,9 @@ export function Footer() {
             <ul className="space-y-2.5">
               {services.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <Link to={l.href} className="text-sm text-muted-foreground transition-colors hover:text-primary">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

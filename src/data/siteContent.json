@@ -58,6 +58,11 @@
       "description": "Apply to top universities in USA, UK, Canada, Australia, Germany, and 60+ countries. Get free admissions counseling and visa guidance.",
       "schemaDescription": "Comprehensive overseas education services, from program selection to university application and student visa processing."
     },
+    "services": {
+      "title": "Our Services - End-to-End Study Abroad Guidance",
+      "description": "Learn about the comprehensive services offered by Graam-InfoTech (IICT), from profile assessment, university selection, visa guidance to pre-departure briefing.",
+      "schemaDescription": "Explore our full suite of study abroad support: visa documentation, scholarship guidance, university selection, and education loans."
+    },
     "testimonials": {
       "title": "Student Reviews & Testimonials - Overseas Education Success Stories",
       "description": "Read authentic feedback and reviews from students placed by Graam-InfoTech (IICT) in top medical and engineering universities globally."

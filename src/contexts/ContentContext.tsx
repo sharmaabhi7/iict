@@ -36,6 +36,7 @@ export interface SiteContent {
     contact: PageContent;
     gallery: PageContent;
     mbbsAbroad: PageContent;
+    services: PageContent;
     studyAbroad: PageContent;
     testimonials: PageContent;
   };

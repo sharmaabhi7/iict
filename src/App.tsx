@@ -11,6 +11,7 @@ import MaintenancePage from "./pages/MaintenancePage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 const IndexPage = lazy(() => import("./pages/Index.tsx"));
 const AboutPage = lazy(() => import("./pages/AboutPage.tsx"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage.tsx"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage.tsx"));
 const TestimonialsPage = lazy(() => import("./pages/TestimonialsPage.tsx"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage.tsx"));
@@ -42,6 +43,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<IndexPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
                 <Route path="/case-studies" element={<CaseStudiesPage />} />
                 <Route path="/testimonials" element={<TestimonialsPage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
