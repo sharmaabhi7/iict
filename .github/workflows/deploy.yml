@@ -1,0 +1,29 @@
+name: Deploy to Linux VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            # Navigate to project directory (Customize this path as needed on your VPS)
+            cd /var/www/html/iict
+            
+            # Fetch latest changes
+            git pull origin main
+            
+            # Install dependencies and build
+            npm install
+            npm run build
