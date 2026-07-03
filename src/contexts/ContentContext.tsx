@@ -39,6 +39,7 @@ export interface SiteContent {
     services: PageContent;
     studyAbroad: PageContent;
     testimonials: PageContent;
+    n8nTraining: PageContent;
   };
 }
 

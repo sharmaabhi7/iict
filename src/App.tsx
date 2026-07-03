@@ -20,6 +20,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
 const StudyAbroadPage = lazy(() => import("./pages/StudyAbroadPage.tsx"));
 const MBBSAbroadPage = lazy(() => import("./pages/MBBSAbroadPage.tsx"));
 const CPLTrainingPage = lazy(() => import("./pages/CPLTrainingPage.tsx"));
+const N8nTrainingPage = lazy(() => import("./pages/N8nTrainingPage.tsx"));
 const CountryDetailPage = lazy(() => import("./pages/CountryDetailPage.tsx"));
 const AdminPage = lazy(() => import("./pages/AdminPage.tsx"));
 
@@ -52,6 +53,7 @@ const App = () => (
                 <Route path="/study-abroad" element={<StudyAbroadPage />} />
                 <Route path="/mbbs-abroad" element={<MBBSAbroadPage />} />
                 <Route path="/cpl-training" element={<CPLTrainingPage />} />
+                <Route path="/n8n-training" element={<N8nTrainingPage />} />
                 <Route path="/countries/:countryId" element={<CountryDetailPage />} />
                 <Route path="/countries" element={<CountryDetailPage />} />
                 <Route path="/admin" element={<AdminPage />} />

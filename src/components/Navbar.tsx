@@ -17,7 +17,8 @@ const navLinks = [
   },
   {
     label: "Study Abroad", href: "/study-abroad", children: [
-      { label: "MBBS Abroad", href: "/mbbs-abroad" }
+      { label: "MBBS Abroad", href: "/mbbs-abroad" },
+      { label: "n8n AI Training", href: "/n8n-training" }
     ]
   },
   { label: "Contact Us", href: "/contact" },
