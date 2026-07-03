@@ -17,10 +17,10 @@ const navLinks = [
   },
   {
     label: "Study Abroad", href: "/study-abroad", children: [
-      { label: "MBBS Abroad", href: "/mbbs-abroad" },
-      { label: "n8n AI Training", href: "/n8n-training" }
+      { label: "MBBS Abroad", href: "/mbbs-abroad" }
     ]
   },
+  { label: "n8n AI Training", href: "/n8n-training", highlighted: true },
   { label: "Contact Us", href: "/contact" },
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blog" },
@@ -111,7 +111,13 @@ export function Navbar() {
               <Link
                 key={l.href}
                 to={l.href}
-                className={`text-[15px] font-semibold transition-colors hover:text-red-600 ${location.pathname === l.href ? 'text-red-600' : 'text-gray-700'}`}
+                className={`text-[15px] font-semibold transition-all ${
+                  l.highlighted 
+                    ? "bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-full shadow-sm hover:shadow-md text-sm tracking-wide" 
+                    : location.pathname === l.href 
+                      ? "text-red-600" 
+                      : "text-gray-700 hover:text-red-600"
+                }`}
               >
                 {l.label}
               </Link>
@@ -153,7 +159,11 @@ export function Navbar() {
                     key={l.href}
                     to={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-1 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-red-600"
+                    className={`block rounded-lg px-3 py-2 text-sm font-semibold transition-all ${
+                      l.highlighted 
+                        ? "bg-red-600 text-white hover:bg-red-700 text-center shadow-sm my-1" 
+                        : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
+                    }`}
                   >
                     {l.label}
                   </Link>

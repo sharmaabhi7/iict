@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Zap, LifeBuoy, Award, ArrowRight, Menu, X, Sun, Moon, Check, CheckCircle2, Calendar } from "lucide-react";
 import { SEO } from "@/components/shared/SEO";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/iict-logo.jpeg";
 
 export default function N8nTrainingPage() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -207,9 +208,12 @@ export default function N8nTrainingPage() {
           <a
             href="#top"
             onClick={(e) => { e.preventDefault(); handleScroll("top"); }}
-            className="shrink-0 rounded-md text-sm font-extrabold tracking-tight text-foreground"
+            className="shrink-0 flex items-center"
           >
-            IICT · <span className="text-primary">n8n AI</span>
+            <img src={logo} alt="IICT Logo" className="h-10 w-auto object-contain md:h-12" />
+            <span className="ml-2.5 text-xs font-extrabold tracking-tight text-foreground md:text-sm">
+              · <span className="text-primary">n8n AI Training</span>
+            </span>
           </a>
           
           <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
@@ -813,8 +817,9 @@ export default function N8nTrainingPage() {
       {/* Localized Footer */}
       <footer className="border-t border-border bg-background transition-colors duration-300">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-8 py-8 text-sm font-semibold text-muted-foreground">
-          <span>
-            © IICT · Graam-Infotech Overseas Educon Ltd.
+          <span className="flex items-center gap-2.5">
+            <img src={logo} alt="IICT Logo" className="h-8 w-auto object-contain" />
+            <span>© IICT · Graam-Infotech Overseas Educon Ltd.</span>
           </span>
           <a href="https://iict-india.org" className="hover:text-primary hover:underline transition-all">
             iict-india.org
