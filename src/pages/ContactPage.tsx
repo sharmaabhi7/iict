@@ -30,12 +30,20 @@ const offices = [
   { city: "Bangalore", address: "2nd Floor, MG Road, Bangalore 560001", phone: "+91 80 2345 6789" },
 ];
 
+import { useSearchParams } from "react-router-dom";
+
 export default function ContactPage() {
   const { content } = useContent();
+  const [searchParams] = useSearchParams();
+  const urlService = searchParams.get("service");
+  const urlCountry = searchParams.get("country");
+
+  const defaultService = urlService === "mbbs-abroad" ? "mbbs" : (urlService === "study-abroad" ? "study-abroad" : "");
+  const defaultMessage = urlCountry ? `I am interested in studying in ${urlCountry}. Please provide more information about the courses, eligibility, and admission process.` : "";
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", service: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", service: defaultService, message: defaultMessage },
   });
 
   const onSubmit = (data: ContactForm) => {
@@ -120,7 +128,7 @@ export default function ContactPage() {
                   <FormField control={form.control} name="service" render={({ field }) => (
                     <FormItem>
                       <FormLabel>Service</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl><SelectTrigger><SelectValue placeholder="Select service" /></SelectTrigger></FormControl>
                         <SelectContent>
                           <SelectItem value="study-abroad">Study Abroad</SelectItem>

@@ -19,7 +19,7 @@ export default function N8nTrainingPage() {
   useEffect(() => {
     const scriptId = "razorpay-embed-btn-js";
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
-    
+
     if (!script) {
       script = document.createElement("script");
       script.id = scriptId;
@@ -63,8 +63,8 @@ export default function N8nTrainingPage() {
 
   // Triggers the hidden Razorpay payment button click, with a hosted-page redirection fallback
   const handleEnrollClick = () => {
-    const rzpBtn = (document.querySelector(".razorpay-payment-button") || 
-                    document.querySelector(".razorpay-embed-btn button")) as HTMLButtonElement | null;
+    const rzpBtn = (document.querySelector(".razorpay-payment-button") ||
+      document.querySelector(".razorpay-embed-btn button")) as HTMLButtonElement | null;
     if (rzpBtn) {
       rzpBtn.click();
     } else {
@@ -215,7 +215,7 @@ export default function N8nTrainingPage() {
               · <span className="text-primary">n8n AI Training</span>
             </span>
           </a>
-          
+
           <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
             {[
               { id: "curriculum", label: "Curriculum" },
@@ -227,11 +227,10 @@ export default function N8nTrainingPage() {
               <button
                 key={section.id}
                 onClick={() => handleScroll(section.id)}
-                className={`relative shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none md:text-sm ${
-                  currentSection === section.id
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`relative shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none md:text-sm ${currentSection === section.id
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 {section.label}
               </button>
@@ -290,11 +289,10 @@ export default function N8nTrainingPage() {
                   <button
                     key={section.id}
                     onClick={() => handleScroll(section.id)}
-                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold transition-colors ${
-                      currentSection === section.id
-                        ? "bg-primary/10 text-primary"
-                        : "text-foreground hover:bg-secondary"
-                    }`}
+                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold transition-colors ${currentSection === section.id
+                      ? "bg-primary/10 text-primary"
+                      : "text-foreground hover:bg-secondary"
+                      }`}
                   >
                     <span>{section.label}</span>
                     <ArrowRight className={`h-4 w-4 transition-opacity ${currentSection === section.id ? "opacity-100" : "opacity-40"}`} />
@@ -327,7 +325,7 @@ export default function N8nTrainingPage() {
               <strong className="text-foreground font-semibold">Hindi</strong> — you build{" "}
               <strong className="text-foreground font-semibold">10 real-world AI agents in n8n</strong> that you can put on your resume by the weekend.
             </p>
-            
+
             <div className="mt-8 flex flex-wrap gap-2.5">
               <span className="rounded-full bg-primary/10 px-5 py-2.5 text-xs font-bold text-primary dark:bg-primary/20">3 days · 1 hr/day</span>
               <span className="rounded-full bg-primary/10 px-5 py-2.5 text-xs font-bold text-primary dark:bg-primary/20">10 real agents</span>
@@ -360,7 +358,7 @@ export default function N8nTrainingPage() {
                 IICT certificate
               </span>
             </div>
-            
+
             <p className="mt-12 text-xs font-semibold text-muted-foreground tracking-wide">
               Graam-InfoTech (IICT) · iict-india.org
             </p>
@@ -368,7 +366,7 @@ export default function N8nTrainingPage() {
 
           {/* Right Column Circular badge */}
           <div className="relative hidden items-center justify-center md:flex">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -396,7 +394,7 @@ export default function N8nTrainingPage() {
           <h2 className="mt-3 max-w-3xl text-2xl font-bold tracking-tight text-foreground md:text-3xl">
             Short. Practical. In your language. Built for the resume — not the shelf.
           </h2>
-          
+
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { val: "10", lbl: "real AI agents you build live" },
@@ -404,8 +402,8 @@ export default function N8nTrainingPage() {
               { val: "Hindi", lbl: "easy-to-follow instruction" },
               { val: "₹199", lbl: "flat — no upsells, no add-ons" }
             ].map((stat, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="rounded-2xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
               >
                 <p className="text-4xl font-black text-primary tracking-tight">{stat.val}</p>
@@ -433,7 +431,7 @@ export default function N8nTrainingPage() {
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {courseTimeline.map((item, i) => (
-              <motion.article 
+              <motion.article
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -442,7 +440,7 @@ export default function N8nTrainingPage() {
                 className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl"
               >
                 <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/5 transition-all duration-500 group-hover:scale-150 group-hover:bg-primary/10"></div>
-                
+
                 <div className="relative flex items-center gap-4">
                   <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3">
                     <span className="text-2xl font-black leading-none">{item.count}</span>
@@ -460,7 +458,7 @@ export default function N8nTrainingPage() {
                 <p className="relative mt-3 text-sm text-muted-foreground leading-relaxed">
                   {item.summary}
                 </p>
-                
+
                 <ul className="mt-6 space-y-2.5 relative">
                   {item.details.map((detail, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground/80">
@@ -501,7 +499,7 @@ export default function N8nTrainingPage() {
                 <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground shadow-lg shadow-primary/20 ring-4 ring-background transition-transform duration-300 group-hover/timeline:scale-110 md:h-12 md:w-12">
                   {i + 1}
                 </div>
-                
+
                 <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg md:p-8">
                   <div className="relative">
                     <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
@@ -521,7 +519,7 @@ export default function N8nTrainingPage() {
                     <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                       {item.summary}
                     </p>
-                    
+
                     <div className="mt-6 border-t border-border/60 pt-5">
                       <p className="text-xs font-bold uppercase tracking-wider text-foreground mb-3">Key Projects & Core Skills:</p>
                       <div className="grid gap-3 sm:grid-cols-2">
@@ -622,7 +620,7 @@ export default function N8nTrainingPage() {
                 If you are looking for a practical, short, and affordable way to start an AI or automation career, this training is for you.
               </p>
             </div>
-            
+
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 "Unemployed IT Graduates",
@@ -705,11 +703,10 @@ export default function N8nTrainingPage() {
                 </div>
 
                 {comparisons.map((row, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`grid grid-cols-[1.4fr_1.4fr_1.4fr] border-b border-border last:border-b-0 ${
-                      idx % 2 === 1 ? "bg-secondary/20" : "bg-card"
-                    }`}
+                  <div
+                    key={idx}
+                    className={`grid grid-cols-[1.4fr_1.4fr_1.4fr] border-b border-border last:border-b-0 ${idx % 2 === 1 ? "bg-secondary/20" : "bg-card"
+                      }`}
                   >
                     <div className="sticky left-0 z-10 px-6 py-5 backdrop-blur border-r border-border md:border-r-0 bg-card/95 font-semibold text-foreground">
                       <p className="text-sm">{row.feature}</p>
@@ -733,8 +730,8 @@ export default function N8nTrainingPage() {
                     <p className="mt-1 text-sm font-semibold">Job-ready skills, 25× less cost.</p>
                   </div>
                   <div className="border-l border-background/10 px-6 py-6 flex items-center">
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={handleEnrollClick}
                       className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground transition-all hover:scale-102 hover:shadow-md"
                     >
@@ -757,7 +754,7 @@ export default function N8nTrainingPage() {
       {/* CTA bottom section */}
       <section id="enroll" className="relative overflow-hidden border-t border-border bg-secondary/20 scroll-mt-20 transition-colors duration-300">
         <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]"></div>
-        
+
         <div className="relative mx-auto max-w-3xl px-8 py-24 text-center">
           <p className="text-sm font-bold tracking-[0.25em] text-primary uppercase">
             04 · ACTION — TAKE THE NEXT STEP
@@ -804,8 +801,8 @@ export default function N8nTrainingPage() {
 
       {/* Invisible Razorpay Embed Button container (not hidden to allow layout checks by the embed script) */}
       <div className="opacity-0 absolute pointer-events-none w-1 h-1 overflow-hidden" aria-hidden="true">
-        <div 
-          className="razorpay-embed-btn" 
+        <div
+          className="razorpay-embed-btn"
           data-url="https://pages.razorpay.com/pl_T8wjREBssTQqjq/view"
           data-text="Pay Now"
           data-color="#528FF0"
@@ -819,7 +816,7 @@ export default function N8nTrainingPage() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-8 py-8 text-sm font-semibold text-muted-foreground">
           <span className="flex items-center gap-2.5">
             <img src={logo} alt="IICT Logo" className="h-8 w-auto object-contain" />
-            <span>© IICT · Graam-Infotech Overseas Educon Ltd.</span>
+            <span>© IICT · 2026 Graam-Infotech. All rights reserved.</span>
           </span>
           <a href="https://iict-india.org" className="hover:text-primary hover:underline transition-all">
             iict-india.org

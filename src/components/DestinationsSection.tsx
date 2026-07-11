@@ -17,6 +17,14 @@ const destinations = [
   { name: "Latvia", code: "lv" },
 ];
 
+const getDestinationPath = (name: string) => {
+  if (name === "Russia") return "/countries/russia";
+  if (name === "Georgia") return "/countries/georgia";
+  const mbbsCountries = ["Uzbekistan", "China", "Kazakhstan", "Nepal", "Egypt", "Belarus"];
+  const service = mbbsCountries.includes(name) ? "mbbs-abroad" : "study-abroad";
+  return `/contact?service=${service}&country=${name}`;
+};
+
 export function DestinationsSection() {
   return (
     <section id="destinations" className="bg-white py-20 mt-12">
@@ -34,25 +42,30 @@ export function DestinationsSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-x-6 max-w-5xl mx-auto">
           {destinations.map((d, i) => (
-            <motion.div
+            <Link
               key={d.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              to={getDestinationPath(d.name)}
               className="flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-24 h-24 rounded-full overflow-hidden shadow-md mb-4 border-2 border-transparent group-hover:border-red-500 transition-colors">
-                <img 
-                  src={`https://flagcdn.com/w160/${d.code}.png`} 
-                  alt={d.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition-colors">
-                {d.name}
-              </span>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="flex flex-col items-center"
+              >
+                <div className="w-24 h-24 rounded-full overflow-hidden shadow-md mb-4 border-2 border-transparent group-hover:border-red-500 transition-colors">
+                  <img 
+                    src={`https://flagcdn.com/w160/${d.code}.png`} 
+                    alt={d.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition-colors">
+                  {d.name}
+                </span>
+              </motion.div>
+            </Link>
           ))}
         </div>
         

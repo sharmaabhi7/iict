@@ -126,7 +126,7 @@ export default function CountryDetailPage() {
         <div className="absolute inset-0 bg-black/50" />
         
         <div className="container relative z-10 text-center flex flex-col items-center gap-3">
-          <Link to="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white/80 hover:text-white transition-colors mb-4">
+          <Link to="/countries" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white/80 hover:text-white transition-colors mb-4">
             <ArrowLeft className="h-4 w-4" /> Back to Destinations
           </Link>
           <span className="text-4xl md:text-5xl">{data.flag}</span>

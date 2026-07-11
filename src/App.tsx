@@ -22,6 +22,7 @@ const MBBSAbroadPage = lazy(() => import("./pages/MBBSAbroadPage.tsx"));
 const CPLTrainingPage = lazy(() => import("./pages/CPLTrainingPage.tsx"));
 const N8nTrainingPage = lazy(() => import("./pages/N8nTrainingPage.tsx"));
 const CountryDetailPage = lazy(() => import("./pages/CountryDetailPage.tsx"));
+const CountriesPage = lazy(() => import("./pages/CountriesPage.tsx"));
 const AdminPage = lazy(() => import("./pages/AdminPage.tsx"));
 
 const queryClient = new QueryClient();
@@ -55,7 +56,7 @@ const App = () => (
                 <Route path="/cpl-training" element={<CPLTrainingPage />} />
                 <Route path="/n8n-training" element={<N8nTrainingPage />} />
                 <Route path="/countries/:countryId" element={<CountryDetailPage />} />
-                <Route path="/countries" element={<CountryDetailPage />} />
+                <Route path="/countries" element={<CountriesPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
