@@ -23,6 +23,7 @@ const CPLTrainingPage = lazy(() => import("./pages/CPLTrainingPage.tsx"));
 const N8nTrainingPage = lazy(() => import("./pages/N8nTrainingPage.tsx"));
 const CountryDetailPage = lazy(() => import("./pages/CountryDetailPage.tsx"));
 const CountriesPage = lazy(() => import("./pages/CountriesPage.tsx"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage.tsx"));
 const AdminPage = lazy(() => import("./pages/AdminPage.tsx"));
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
                 <Route path="/n8n-training" element={<N8nTrainingPage />} />
                 <Route path="/countries/:countryId" element={<CountryDetailPage />} />
                 <Route path="/countries" element={<CountriesPage />} />
+                <Route path="/register" element={<RegisterPage />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

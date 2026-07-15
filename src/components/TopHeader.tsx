@@ -1,26 +1,9 @@
-import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail } from "lucide-react";
 
 export function TopHeader() {
   return (
-    <div className="w-full bg-[#1e1e1e] text-[10px] md:text-xs text-white">
-      <div className="container flex h-10 items-center justify-between overflow-hidden">
-        <div className="flex h-full items-center overflow-x-auto whitespace-nowrap scrollbar-none w-full md:w-auto">
-          <Link to="#" className="flex h-full items-center gap-2 px-3 md:px-4 transition-colors hover:bg-white/10">
-            <span className="text-yellow-500">🎓</span>
-            <span>Apply Online</span>
-          </Link>
-          <div className="h-full w-px bg-white/20"></div>
-          <Link to="#" className="flex h-full items-center gap-2 px-3 md:px-4 transition-colors hover:bg-white/10">
-            <span className="text-yellow-500">👤</span>
-            <span>Student Login</span>
-          </Link>
-          <div className="h-full w-px bg-white/20"></div>
-          <Link to="#" className="flex h-full items-center gap-2 px-3 md:px-4 transition-colors hover:bg-white/10">
-            <span className="text-yellow-500">📞</span>
-            <span>Request a call back</span>
-          </Link>
-        </div>
+    <div className="hidden md:block w-full bg-[#1e1e1e] text-[10px] md:text-xs text-white">
+      <div className="container flex h-10 items-center justify-end overflow-hidden">
         
         <div className="hidden md:flex h-full items-center gap-4 bg-[#ffcc00] px-6 text-black" style={{ clipPath: 'polygon(20px 0, 100% 0, 100% 100%, 0% 100%)' }}>
           <div className="ml-4 flex items-center gap-3">

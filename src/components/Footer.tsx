@@ -2,6 +2,8 @@ import { GraduationCap, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Yout
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/iict-logo.jpeg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const quickLinks = [
   { label: "Study in USA", href: "/study-abroad" },
@@ -20,6 +22,61 @@ const services = [
 ];
 
 export function Footer() {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+
+    try {
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      
+      // Save local backup lead
+      const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
+      const newLead = {
+        name: "Newsletter Subscriber",
+        email: newsletterEmail.trim(),
+        phone: "N/A",
+        whatsapp: "N/A",
+        country: "N/A",
+        program: "Newsletter Subscription",
+        message: "Subscribed via footer newsletter form",
+        id: Date.now().toString(),
+        date: new Date().toLocaleString(),
+        status: webhookUrl ? "Submitted to Sheets" : "Saved Locally (Pending Sync)"
+      };
+      localStorage.setItem("iict_leads", JSON.stringify([newLead, ...savedLeads]));
+
+      if (webhookUrl) {
+        const searchParams = new URLSearchParams();
+        searchParams.append("timestamp", newLead.date);
+        searchParams.append("name", newLead.name);
+        searchParams.append("email", newLead.email);
+        searchParams.append("phone", newLead.phone);
+        searchParams.append("whatsapp", newLead.whatsapp);
+        searchParams.append("country", newLead.country);
+        searchParams.append("program", newLead.program);
+        searchParams.append("message", newLead.message);
+
+        await fetch(webhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: searchParams.toString(),
+        });
+      }
+
+      toast.success("Thank you for subscribing to our newsletter!");
+      setNewsletterEmail("");
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error);
+      toast.success("Thank you for subscribing to our newsletter!"); // Keep success UX
+      setNewsletterEmail("");
+    }
+  };
+
   return (
     <footer className="border-t border-border bg-card">
       <div className="container py-16">
@@ -121,11 +178,14 @@ export function Footer() {
               <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Mumbai, Delhi, Bangalore</li>
             </ul>
             <h4 className="mb-2 font-heading text-sm font-bold text-foreground">Newsletter</h4>
-            <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex gap-2" onSubmit={handleNewsletterSubmit}>
               <input
                 type="email"
                 placeholder="Your email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
                 className="flex-1 rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
+                required
               />
               <Button size="sm" type="submit">
                 Subscribe

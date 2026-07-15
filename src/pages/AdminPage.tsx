@@ -59,6 +59,84 @@ export default function AdminPage() {
     setGhBranch(savedBranch);
   }, []);
 
+  // Google Sheets integration States
+  const [sheetsWebhook, setSheetsWebhook] = useState("");
+  const [isTestingWebhook, setIsTestingWebhook] = useState(false);
+  const [leads, setLeads] = useState<any[]>([]);
+
+  // Load Google Sheets / Leads settings on mount
+  useEffect(() => {
+    const savedWebhook = localStorage.getItem("iict_google_sheets_webhook") || "";
+    setSheetsWebhook(savedWebhook);
+    
+    const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
+    setLeads(savedLeads);
+  }, []);
+
+  const handleSaveSheetsWebhook = () => {
+    localStorage.setItem("iict_google_sheets_webhook", sheetsWebhook.trim());
+    toast.success("Google Sheets Webhook URL saved successfully!");
+  };
+
+  const handleTestWebhook = async () => {
+    if (!sheetsWebhook.trim()) {
+      toast.error("Please enter a Google Sheets Webhook URL first.");
+      return;
+    }
+    setIsTestingWebhook(true);
+    try {
+      const searchParams = new URLSearchParams();
+      searchParams.append("timestamp", new Date().toLocaleString());
+      searchParams.append("name", "Test Lead (Admin Panel)");
+      searchParams.append("email", "test@iict-india.org");
+      searchParams.append("phone", "+91 99999 99999");
+      searchParams.append("whatsapp", "+91 99999 99999");
+      searchParams.append("country", "Italy (Test)");
+      searchParams.append("program", "MBBS Abroad (Test)");
+      searchParams.append("message", "This is a test submission from the Admin panel to check integration.");
+
+      await fetch(sheetsWebhook.trim(), {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: searchParams.toString(),
+      });
+      
+      toast.success("Test request sent! Check your Google Sheet to verify the new row.", {
+        duration: 5000,
+      });
+    } catch (err: any) {
+      console.error(err);
+      toast.error("Failed to execute test request: " + (err.message || "Unknown error"));
+    } finally {
+      setIsTestingWebhook(false);
+    }
+  };
+
+  const handleDownloadLeads = () => {
+    const jsonString = JSON.stringify(leads, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "captured_leads.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast.success("Leads JSON downloaded!");
+  };
+
+  const handleClearLeads = () => {
+    if (window.confirm("Are you sure you want to permanently delete all locally captured registration leads? This action cannot be undone.")) {
+      localStorage.removeItem("iict_leads");
+      setLeads([]);
+      toast.info("Local leads database cleared.");
+    }
+  };
+
   if (!formState) return null;
 
   const handleGlobalChange = (key: keyof typeof formState.global, value: string) => {
@@ -306,6 +384,9 @@ export default function AdminPage() {
             </TabsTrigger>
             <TabsTrigger value="seo" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white text-slate-400 font-semibold rounded-lg px-4">
               <Globe className="h-4 w-4 mr-2" /> SEO Pages
+            </TabsTrigger>
+            <TabsTrigger value="sheets" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white text-slate-400 font-semibold rounded-lg px-4">
+              <FileText className="h-4 w-4 mr-2" /> Google Sheets
             </TabsTrigger>
             <TabsTrigger value="publish" className="data-[state=active]:bg-teal-600 data-[state=active]:text-white text-slate-400 font-semibold rounded-lg px-4">
               <Github className="h-4 w-4 mr-2" /> Publish Sync
@@ -744,6 +825,170 @@ export default function AdminPage() {
                 </Card>
               </div>
 
+            </div>
+          </TabsContent>
+
+          {/* TAB 5: GOOGLE SHEETS & LEADS DATABASE */}
+          <TabsContent value="sheets" className="outline-none space-y-6">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-2 space-y-6">
+                
+                {/* Webhook Configuration Card */}
+                <Card className="bg-slate-900/60 border-slate-800 shadow-xl backdrop-blur-sm rounded-2xl">
+                  <CardHeader>
+                    <CardTitle className="text-xl font-bold flex items-center gap-2 text-white">
+                      <FileText className="h-5 w-5 text-teal-400" /> Google Sheets Lead Integration
+                    </CardTitle>
+                    <CardDescription className="text-slate-400 text-xs">
+                      Hook up the /register page form directly to Google Sheets using a Google Apps Script deployment URL.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                        Apps Script Web App Webhook URL
+                      </label>
+                      <div className="flex gap-3">
+                        <Input 
+                          placeholder="https://script.google.com/macros/s/.../exec"
+                          value={sheetsWebhook}
+                          onChange={(e) => setSheetsWebhook(e.target.value)}
+                          className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11 flex-1 font-mono text-xs text-white"
+                        />
+                        <Button 
+                          onClick={handleSaveSheetsWebhook}
+                          className="bg-teal-600 hover:bg-teal-500 text-white font-semibold h-11 px-5"
+                        >
+                          Save URL
+                        </Button>
+                      </div>
+                      <p className="text-[10px] text-slate-400 leading-relaxed">
+                        Must be a deployment URL ending in <code className="text-teal-400 font-mono">/exec</code>. Make sure the deployment configuration in Google Sheets allows access to "Anyone" (so the public browser form can post data).
+                      </p>
+                    </div>
+
+                    <div className="border-t border-slate-800/80 pt-6 flex gap-4 items-center">
+                      <Button
+                        onClick={handleTestWebhook}
+                        disabled={isTestingWebhook || !sheetsWebhook}
+                        className="bg-blue-600 hover:bg-blue-500 text-white h-10 px-4 font-semibold text-xs rounded-lg gap-2"
+                      >
+                        {isTestingWebhook ? "Sending Test..." : "Send Test Lead Row"}
+                      </Button>
+                      <span className="text-xs text-slate-400">
+                        {sheetsWebhook ? "Ready to test configuration." : "Enter a Webhook URL to enable testing."}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Local Leads Captured Database */}
+                <Card className="bg-slate-900/60 border-slate-800 shadow-xl backdrop-blur-sm rounded-2xl">
+                  <CardHeader className="flex flex-row justify-between items-center border-b border-slate-800/60 pb-5">
+                    <div>
+                      <CardTitle className="text-xl font-bold flex items-center gap-2 text-white">
+                        Captured Registrations ({leads.length})
+                      </CardTitle>
+                      <CardDescription className="text-slate-400 text-xs mt-1">
+                        View leads captured on this browser. A local copy is always saved here as a safety backup.
+                      </CardDescription>
+                    </div>
+                    <div className="flex gap-2">
+                      {leads.length > 0 && (
+                        <>
+                          <Button 
+                            onClick={handleDownloadLeads}
+                            variant="outline" 
+                            size="sm"
+                            className="border-slate-850 hover:bg-slate-900 text-xs font-semibold text-slate-350 hover:text-white"
+                          >
+                            Download JSON
+                          </Button>
+                          <Button 
+                            onClick={handleClearLeads}
+                            variant="destructive" 
+                            size="sm"
+                            className="bg-red-955/40 border border-red-800/60 hover:bg-red-900 text-red-300 text-xs font-semibold"
+                          >
+                            Clear Database
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    {leads.length === 0 ? (
+                      <div className="text-center py-10 text-slate-500 text-sm">
+                        No registrations have been captured on this device yet.
+                      </div>
+                    ) : (
+                      <div className="overflow-x-auto max-h-[400px] overflow-y-auto scrollbar-thin">
+                        <table className="w-full text-left text-xs border-collapse">
+                          <thead>
+                            <tr className="border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider">
+                              <th className="py-2 px-3">Date</th>
+                              <th className="py-2 px-3">Name</th>
+                              <th className="py-2 px-3">Contact</th>
+                              <th className="py-2 px-3">Country / Program</th>
+                              <th className="py-2 px-3">Sync Status</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-800 text-slate-300 font-medium">
+                            {leads.map((l: any) => (
+                              <tr key={l.id} className="hover:bg-slate-900/30">
+                                <td className="py-3 px-3 whitespace-nowrap text-[10px] text-slate-500">{l.date}</td>
+                                <td className="py-3 px-3 font-semibold text-white">{l.name}</td>
+                                <td className="py-3 px-3">
+                                  <div>{l.phone}</div>
+                                  <div className="text-[10px] text-slate-500">Email: {l.email}</div>
+                                </td>
+                                <td className="py-3 px-3">
+                                  <div>{l.country}</div>
+                                  <div className="text-[10px] text-teal-400">{l.program}</div>
+                                </td>
+                                <td className="py-3 px-3">
+                                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${l.status?.includes("Submitted") ? "bg-green-950/80 border border-green-800 text-green-300" : "bg-yellow-950/80 border border-yellow-800 text-yellow-300"}`}>
+                                    {l.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Apps Script Help Info Box */}
+              <div className="space-y-6">
+                <Card className="bg-slate-900/60 border-slate-800 shadow-xl backdrop-blur-sm rounded-2xl">
+                  <CardHeader>
+                    <CardTitle className="text-md font-bold text-white flex items-center gap-1.5">
+                      How to setup Google Apps Script
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-xs text-slate-400 space-y-4 leading-relaxed font-medium">
+                    <p>
+                      Follow these steps to deploy a lightweight webhook connector that adds rows to your sheet:
+                    </p>
+                    <ol className="list-decimal pl-4 space-y-2">
+                      <li>Create a new spreadsheet on Google Sheets.</li>
+                      <li>Name the sheet columns in Row 1: <strong className="text-slate-300">Timestamp, Name, Email, Phone, WhatsApp, Country, Program, Message</strong>.</li>
+                      <li>Go to the main menu and click on <strong>Extensions &gt; Apps Script</strong>.</li>
+                      <li>Delete any existing boilerplates inside the editor and paste the Google Apps Script code snippet.</li>
+                      <li>Click the <strong>Save</strong> disk icon.</li>
+                      <li>Click <strong>Deploy &gt; New Deployment</strong>.</li>
+                      <li>Click the gear icon and choose <strong>Web app</strong>.</li>
+                      <li>Under "Execute as", select <strong>"Me"</strong>.</li>
+                      <li>Under "Who has access", select <strong>"Anyone"</strong> (this allows public browser form submissions to execute the sheet script).</li>
+                      <li>Click <strong>Deploy</strong>. Authorize scopes if prompted.</li>
+                      <li>Copy the generated <strong>Web App URL</strong> and paste it in the webhook input.</li>
+                    </ol>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </TabsContent>
         </Tabs>

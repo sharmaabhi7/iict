@@ -17,14 +17,6 @@ const destinations = [
   { name: "Latvia", code: "lv" },
 ];
 
-const getDestinationPath = (name: string) => {
-  if (name === "Russia") return "/countries/russia";
-  if (name === "Georgia") return "/countries/georgia";
-  const mbbsCountries = ["Uzbekistan", "China", "Kazakhstan", "Nepal", "Egypt", "Belarus"];
-  const service = mbbsCountries.includes(name) ? "mbbs-abroad" : "study-abroad";
-  return `/contact?service=${service}&country=${name}`;
-};
-
 export function DestinationsSection() {
   return (
     <section id="destinations" className="bg-white py-20 mt-12">
@@ -39,12 +31,11 @@ export function DestinationsSection() {
             Where would you <span className="text-red-600">like to study?</span>
           </h2>
         </motion.div>
-
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-x-6 max-w-5xl mx-auto">
           {destinations.map((d, i) => (
             <Link
               key={d.name}
-              to={getDestinationPath(d.name)}
+              to="/countries"
               className="flex flex-col items-center group cursor-pointer"
             >
               <motion.div

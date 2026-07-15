@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Check, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export function BatchSelection() {
   return (
@@ -58,9 +59,11 @@ export function BatchSelection() {
               <span className="text-xs font-black text-red-600 text-center uppercase tracking-wide">
                 Limited MBBS Abroad Seats
               </span>
-              <Button className="w-full bg-[#b30000] hover:bg-red-800 text-white font-bold py-3.5 rounded-lg shadow-sm">
-                Apply Now!
-              </Button>
+              <Link to="/register?program=MBBS Abroad&message=Interested in Admission Pack for MBBS." className="w-full">
+                <Button className="w-full bg-[#b30000] hover:bg-red-800 text-white font-bold py-3.5 rounded-lg shadow-sm">
+                  Apply Now!
+                </Button>
+              </Link>
             </div>
           </motion.div>
 
@@ -105,9 +108,11 @@ export function BatchSelection() {
               <span className="text-xs font-black text-gray-500 text-center uppercase tracking-wide">
                 Start prep from Day 1
               </span>
-              <Button className="w-full bg-[#997300] hover:bg-[#806000] text-white font-bold py-3.5 rounded-lg shadow-sm">
-                Learn More
-              </Button>
+              <Link to="/register?program=MBBS Abroad&message=Interested in NExT Career Pack for MBBS." className="w-full">
+                <Button className="w-full bg-[#997300] hover:bg-[#806000] text-white font-bold py-3.5 rounded-lg shadow-sm">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </motion.div>
 
@@ -157,9 +162,11 @@ export function BatchSelection() {
               <span className="text-xs font-black text-[#990000] text-center uppercase tracking-wide">
                 Best path to USA residency
               </span>
-              <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg shadow-sm">
-                Get Details
-              </Button>
+              <Link to="/register?program=MBBS Abroad&message=Interested in USMLE Career Pack for MBBS." className="w-full">
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg shadow-sm">
+                  Get Details
+                </Button>
+              </Link>
             </div>
           </motion.div>
 

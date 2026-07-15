@@ -46,9 +46,54 @@ export default function ContactPage() {
     defaultValues: { name: "", email: "", phone: "", service: defaultService, message: defaultMessage },
   });
 
-  const onSubmit = (data: ContactForm) => {
-    toast.success("Thank you! We'll get back to you within 24 hours.");
-    form.reset();
+  const onSubmit = async (data: ContactForm) => {
+    try {
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      
+      // Save local backup lead
+      const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
+      const newLead = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        whatsapp: data.phone, // Default WhatsApp to contact phone
+        country: "N/A", // Contact page has no country selector
+        program: data.service === "mbbs" ? "MBBS Abroad" : "Study Abroad",
+        message: data.message,
+        id: Date.now().toString(),
+        date: new Date().toLocaleString(),
+        status: webhookUrl ? "Submitted to Sheets" : "Saved Locally (Pending Sync)"
+      };
+      localStorage.setItem("iict_leads", JSON.stringify([newLead, ...savedLeads]));
+
+      if (webhookUrl) {
+        const searchParams = new URLSearchParams();
+        searchParams.append("timestamp", newLead.date);
+        searchParams.append("name", newLead.name);
+        searchParams.append("email", newLead.email);
+        searchParams.append("phone", newLead.phone);
+        searchParams.append("whatsapp", newLead.whatsapp);
+        searchParams.append("country", newLead.country);
+        searchParams.append("program", newLead.program);
+        searchParams.append("message", newLead.message);
+
+        await fetch(webhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: searchParams.toString(),
+        });
+      }
+
+      toast.success("Thank you! We'll get back to you within 24 hours.");
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting contact form to sheets:", error);
+      toast.success("Thank you! We'll get back to you within 24 hours."); // Keep success UX
+      form.reset();
+    }
   };
 
   const contactPageSchema = {
