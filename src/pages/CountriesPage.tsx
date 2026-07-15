@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
@@ -185,8 +185,16 @@ const countriesList: Country[] = [
 
 export default function CountriesPage() {
   const { content } = useContent();
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<"all" | "mbbs" | "study-abroad">("all");
+
+  useEffect(() => {
+    const s = searchParams.get("search") || "";
+    const t = searchParams.get("tab") || "all";
+    setSearchQuery(s);
+    setActiveTab((t === "mbbs" || t === "study-abroad") ? t : "all");
+  }, [searchParams]);
 
   const filteredCountries = countriesList.filter((country) => {
     const matchesSearch = country.name.toLowerCase().includes(searchQuery.toLowerCase());

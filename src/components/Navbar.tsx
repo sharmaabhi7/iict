@@ -127,9 +127,9 @@ export function Navbar() {
               </Link>
             )
           )}
-          <button className="text-gray-700 hover:text-red-600">
+          <Link to="/countries" className="text-gray-700 hover:text-red-600 flex items-center">
             <Search className="h-5 w-5" />
-          </button>
+          </Link>
         </div>
       </div>
 
