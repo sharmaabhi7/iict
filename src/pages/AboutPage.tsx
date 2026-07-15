@@ -68,7 +68,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={content.pages.about.title}
         description={content.pages.about.description}
         path="/about"
@@ -103,14 +103,14 @@ export default function AboutPage() {
           >
             {/* Left Column: Founder Photo */}
             <div className="md:w-1/3 min-h-[350px] relative">
-              <img 
-                src={founderImg} 
-                alt="Dr. Mohammad Ghufran Ali Siddiqui" 
-                className="w-full h-full object-cover object-top" 
+              <img
+                src={founderImg}
+                alt="Dr. Mohammad Ghufran Ali Siddiqui"
+                className="w-full h-full object-cover object-top"
                 loading="eager"
               />
             </div>
-            
+
             {/* Right Column: Founder Details */}
             <div className="md:w-2/3 p-8 md:p-10 flex flex-col gap-6 justify-between">
               <div>
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   Founder & CEO, GRAAMIICT Education Pvt. Ltd.
                 </span>
               </div>
-              
+
               {/* Badges/Chips */}
               <div className="flex flex-wrap gap-2">
                 <span className="bg-gray-100 text-gray-600 text-[11px] font-bold px-3.5 py-1.5 rounded-full border border-gray-200/50">
@@ -160,14 +160,14 @@ export default function AboutPage() {
               </div>
 
               {/* LinkedIn Connect */}
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.linkedin.com/in/dr-mga-siddiqui/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="self-start inline-flex items-center gap-2 bg-[#0077b5] hover:bg-[#006297] text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors shadow-sm mt-1"
               >
                 <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
                 Connect on LinkedIn
               </a>
@@ -229,25 +229,25 @@ export default function AboutPage() {
       {/* Team */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <motion.div 
-            initial={{ opacity: 0, y: 16 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mx-auto mb-14 max-w-2xl text-center"
           >
             <h2 className="font-heading text-3xl font-black text-gray-900">
               Our Expert Counselling Team
             </h2>
           </motion.div>
-          
+
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
             {team.map((t, i) => (
-              <motion.div 
-                key={t.name} 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                transition={{ delay: i * 0.08 }} 
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-3xl border border-gray-200/60 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group flex flex-col h-full text-left"
               >
                 {/* Counselor Photo */}
@@ -269,17 +269,17 @@ export default function AboutPage() {
                       {t.role}
                     </p>
                   </div>
-                  
+
                   {/* Badge */}
                   <div className="inline-block bg-slate-100 text-slate-600 text-[11px] font-bold px-3 py-1.5 rounded-full border border-slate-200/50">
                     {t.badge}
                   </div>
-                  
+
                   {/* Description */}
                   <p className="text-xs text-slate-500 font-semibold leading-relaxed mt-1 flex-grow">
                     {t.desc}
                   </p>
-                  
+
                   {/* Book Session button */}
                   <a
                     href={`https://wa.me/919897278615?text=Hello,%20I'd%20like%20to%20book%20a%20session%20with%20counselor%20${encodeURIComponent(t.name)}`}

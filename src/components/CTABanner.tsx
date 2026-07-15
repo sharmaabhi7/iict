@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function CTABanner() {
   return (
@@ -23,12 +24,16 @@ export function CTABanner() {
               Book a free counselling session today and let our experts guide you to your dream university.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Button size="lg" variant="secondary" className="gap-2 text-base font-semibold">
-                Book Free Counselling <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-base text-primary-foreground hover:bg-primary-foreground/10">
-                Talk to an Expert
-              </Button>
+              <Link to="/register">
+                <Button size="lg" variant="secondary" className="gap-2 text-base font-semibold">
+                  Book Free Counselling <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="ghost" className="border border-white/35 text-base text-white hover:bg-white hover:text-primary transition-colors">
+                  Talk to an Expert
+                </Button>
+              </Link>
             </div>
           </div>
         </motion.div>

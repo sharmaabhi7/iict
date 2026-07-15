@@ -26,7 +26,7 @@ type ContactForm = z.infer<typeof contactSchema>;
 
 const offices = [
   { city: "Mumbai (Head Office)", address: "5th Floor, Trade Centre, BKC, Mumbai 400051", phone: "+91 22 6789 0123" },
-  { city: "Delhi", address: "3rd Floor, Connaught Place, New Delhi 110001", phone: "+91 11 4567 8901" },
+  { city: "Delhi", address: "101, NH-19, above Sandoz Restaurant, CRRI, Ishwar Nagar, Okhla, New Delhi, Delhi 110020", phone: "+91 98972 78615" },
   { city: "Bangalore", address: "2nd Floor, MG Road, Bangalore 560001", phone: "+91 80 2345 6789" },
 ];
 
@@ -260,7 +260,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="overflow-hidden rounded-3xl border border-border shadow-card">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.2!2d72.87!3d19.06!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDAzJzM2LjAiTiA3MsKwNTInMTIuMCJF!5e0!3m2!1sen!2sin!4v1"
+              src="https://maps.google.com/maps?q=101%2C%20NH-19%2C%20above%20Sandoz%20Restaurant%2C%20CRRI%2C%20Ishwar%20Nagar%2C%20Okhla%2C%20New%20Delhi%2C%20Delhi%20110020&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}

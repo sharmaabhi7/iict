@@ -40,7 +40,11 @@ export function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-6 xl:flex">
-          <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-full font-semibold px-6 gap-2">
+          <Button 
+            onClick={() => window.dispatchEvent(new CustomEvent("open-live-chat"))}
+            variant="outline" 
+            className="border-red-600 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-full font-semibold px-6 gap-2"
+          >
             <span className="text-xl">🎧</span> Live Counselling
           </Button>
 

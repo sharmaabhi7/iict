@@ -34,6 +34,17 @@ export function FloatingActions() {
     }
   }, [messages, isOpen]);
 
+  // Listen for global open chat events
+  useEffect(() => {
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+    window.addEventListener("open-live-chat", handleOpenChat);
+    return () => {
+      window.removeEventListener("open-live-chat", handleOpenChat);
+    };
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -184,7 +195,11 @@ export function FloatingActions() {
     <>
       {/* Side Banner */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:block">
-        <div className="bg-[#004080] text-white py-4 px-2 rounded-l-md shadow-lg cursor-pointer hover:bg-[#003060] transition-colors" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+        <div 
+          onClick={() => setIsOpen(true)}
+          className="bg-[#004080] text-white py-4 px-2 rounded-l-md shadow-lg cursor-pointer hover:bg-[#003060] transition-colors" 
+          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+        >
           <span className="text-sm font-semibold tracking-wider">MBBS Admissions 26-27</span>
         </div>
       </div>
