@@ -25,6 +25,7 @@ const CountryDetailPage = lazy(() => import("./pages/CountryDetailPage.tsx"));
 const CountriesPage = lazy(() => import("./pages/CountriesPage.tsx"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage.tsx"));
 const AdminPage = lazy(() => import("./pages/AdminPage.tsx"));
+const WhatsAppJoinPage = lazy(() => import("./pages/WhatsAppJoinPage.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,8 @@ const App = () => (
                 <Route path="/countries" element={<CountriesPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/whatsapp" element={<WhatsAppJoinPage />} />
+                <Route path="/join-whatsapp" element={<WhatsAppJoinPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

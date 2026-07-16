@@ -40,6 +40,7 @@ export interface SiteContent {
     studyAbroad: PageContent;
     testimonials: PageContent;
     n8nTraining: PageContent;
+    whatsapp: PageContent;
   };
 }
 
