@@ -18,7 +18,7 @@ const cards = [
     title: "Integrated German Skill Program",
     desc: "This affordable program helps ambitious students prepare for a future in Germany while pursuing diploma or vocational courses after 12th grade. It offers a pathway to study, train, and earn, with a potential salary of ₹30 Lakh and more after completion.",
     imgUrl: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600&auto=format&fit=crop",
-    path: "/contact?service=study-abroad&country=Germany"
+    path: "/countries/germany"
   }
 ];
 

@@ -13,6 +13,7 @@ const navLinks = [
     label: "Countries", href: "/countries", children: [
       { label: "Russia", href: "/countries/russia" },
       { label: "Georgia", href: "/countries/georgia" },
+      { label: "Germany", href: "/countries/germany" },
     ]
   },
   {

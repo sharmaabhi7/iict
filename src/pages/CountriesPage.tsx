@@ -164,8 +164,8 @@ const countriesList: Country[] = [
     duration: "3 Years (UG) / 2 Yrs (PG)",
     flag: "🇩🇪",
     highlights: ["Zero Tuition in Public Uni", "18-Month Job Seeking Visa", "Europe's Strongest Economy", "High Industrial Integration"],
-    path: "/contact?service=study-abroad&country=Germany",
-    hasDetails: false
+    path: "/countries/germany",
+    hasDetails: true
   },
   {
     code: "au",

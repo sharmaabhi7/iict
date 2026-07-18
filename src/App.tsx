@@ -21,6 +21,7 @@ const StudyAbroadPage = lazy(() => import("./pages/StudyAbroadPage.tsx"));
 const MBBSAbroadPage = lazy(() => import("./pages/MBBSAbroadPage.tsx"));
 const CPLTrainingPage = lazy(() => import("./pages/CPLTrainingPage.tsx"));
 const N8nTrainingPage = lazy(() => import("./pages/N8nTrainingPage.tsx"));
+const GermanyProgramPage = lazy(() => import("./pages/GermanyProgramPage.tsx"));
 const CountryDetailPage = lazy(() => import("./pages/CountryDetailPage.tsx"));
 const CountriesPage = lazy(() => import("./pages/CountriesPage.tsx"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage.tsx"));
@@ -60,6 +61,7 @@ const App = () => (
                 <Route path="/mbbs-abroad" element={<MBBSAbroadPage />} />
                 <Route path="/cpl-training" element={<CPLTrainingPage />} />
                 <Route path="/n8n-training" element={<N8nTrainingPage />} />
+                <Route path="/countries/germany" element={<GermanyProgramPage />} />
                 <Route path="/countries/:countryId" element={<CountryDetailPage />} />
                 <Route path="/countries" element={<CountriesPage />} />
                 <Route path="/register" element={<RegisterPage />} />
