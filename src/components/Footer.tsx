@@ -198,9 +198,9 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="container flex flex-col items-center justify-between gap-3 py-6 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} Graam-Infotech. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-primary">Privacy Policy</a>
-            <a href="#" className="hover:text-primary">Terms of Service</a>
+          <div className="flex gap-4 sm:mr-36 md:mr-44">
+            <Link to="/privacy-policy" className="hover:text-primary">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-primary">Terms of Service</Link>
           </div>
         </div>
       </div>

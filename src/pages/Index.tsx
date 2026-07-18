@@ -12,7 +12,6 @@ import { BatchSelection } from "@/components/BatchSelection";
 import { CareerStories } from "@/components/CareerStories";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
-import { FloatingActions } from "@/components/FloatingActions";
 import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
 
@@ -87,9 +86,6 @@ const Index = () => {
       
       {/* Footer */}
       <Footer />
-      
-      {/* Back to top button & admissions banner */}
-      <FloatingActions />
     </div>
   );
 };

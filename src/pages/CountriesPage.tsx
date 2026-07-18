@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FloatingActions } from "@/components/FloatingActions";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, MapPin, DollarSign, Clock, CheckCircle2, ChevronRight, School, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -179,6 +178,19 @@ const countriesList: Country[] = [
     flag: "🇦🇺",
     highlights: ["Up to 4 Years Post-Study Work", "Top Ranked Group of 8", "Stunning Cities & Climate", "Part-Time Work Allowances"],
     path: "/contact?service=study-abroad&country=Australia",
+    hasDetails: false
+  },
+  {
+    code: "it",
+    name: "Italy",
+    category: "study-abroad",
+    image: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?q=80&w=600&auto=format&fit=crop",
+    tuition: "€900 - €4,000 / year",
+    livingCost: "₹5.0 - 8.0 Lakhs / year",
+    duration: "3 Years (UG) / 2 Yrs (PG)",
+    flag: "🇮🇹",
+    highlights: ["Highly Affordable Public Universities", "English-Taught Degrees", "MAECI & Regional Scholarships", "World Heritage Study Environment"],
+    path: "/contact?service=study-abroad&country=Italy",
     hasDetails: false
   }
 ];
@@ -474,7 +486,6 @@ export default function CountriesPage() {
       </section>
 
       <Footer />
-      <FloatingActions />
     </div>
   );
 }

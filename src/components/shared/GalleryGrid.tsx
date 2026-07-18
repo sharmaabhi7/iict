@@ -24,17 +24,19 @@ export function GalleryGrid({ images, categories, title = "Gallery" }: GalleryGr
   const filtered = active === "All" ? images : images.filter((i) => i.category === active);
 
   return (
-    <section className="py-16 md:py-20">
+    <section className={`pb-16 md:pb-20 ${title ? "pt-16 md:pt-20" : "pt-0"}`}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mx-auto mb-10 max-w-2xl text-center"
-        >
-          <span className="mb-3 inline-block text-sm font-semibold text-primary">GALLERY</span>
-          <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
-        </motion.div>
+        {title && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mx-auto mb-10 max-w-2xl text-center"
+          >
+            <span className="mb-3 inline-block text-sm font-semibold text-primary">GALLERY</span>
+            <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
+          </motion.div>
+        )}
 
         {allCategories.length > 1 && (
           <div className="mb-8 flex flex-wrap justify-center gap-2">

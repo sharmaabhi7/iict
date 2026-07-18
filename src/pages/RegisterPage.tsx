@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FloatingActions } from "@/components/FloatingActions";
 import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
 import { Button } from "@/components/ui/button";
@@ -450,7 +449,6 @@ export default function RegisterPage() {
         </div>
       </div>
       <Footer />
-      <FloatingActions />
     </div>
   );
 }

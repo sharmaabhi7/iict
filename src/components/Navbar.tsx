@@ -87,9 +87,9 @@ export function Navbar() {
                 onMouseEnter={() => setDropdown(l.label)}
                 onMouseLeave={() => setDropdown(null)}
               >
-                <button className={`flex items-center gap-1 text-[15px] font-semibold transition-colors hover:text-red-600 ${location.pathname.startsWith(l.href) ? 'text-red-600' : 'text-gray-700'}`}>
+                <Link to={l.href} className={`flex items-center gap-1 text-[15px] font-semibold transition-colors hover:text-red-600 ${location.pathname.startsWith(l.href) ? 'text-red-600' : 'text-gray-700'}`}>
                   {l.label} <ChevronDown className="h-4 w-4" />
-                </button>
+                </Link>
                 <AnimatePresence>
                   {dropdown === l.label && (
                     <motion.div
@@ -145,8 +145,14 @@ export function Navbar() {
             <nav className="container flex flex-col gap-2 py-4">
               {navLinks.map((l) =>
                 l.children ? (
-                  <div key={l.label}>
-                    <p className="px-1 py-2 text-xs font-semibold uppercase text-gray-500">{l.label}</p>
+                  <div key={l.label} className="flex flex-col">
+                    <Link
+                      to={l.href}
+                      onClick={() => setOpen(false)}
+                      className="px-1 py-2 text-xs font-bold uppercase text-gray-500 hover:text-red-600 transition-colors"
+                    >
+                      {l.label}
+                    </Link>
                     {l.children.map((c) => (
                       <Link
                         key={c.href}

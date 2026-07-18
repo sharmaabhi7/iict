@@ -3,11 +3,10 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTABanner } from "@/components/CTABanner";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Star, Play } from "lucide-react";
 import { SEO } from "@/components/shared/SEO";
-
 import { useContent } from "@/contexts/ContentContext";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const reviews = [
   { name: "Priya Sharma", country: "Canada", text: "Graam-Infotech made my dream of studying in Canada a reality. From university selection to visa approval, the support was exceptional.", rating: 5, before: "Confused about options, rejected twice", after: "Admitted to University of Waterloo with scholarship" },
@@ -21,14 +20,15 @@ const reviews = [
 const countries = ["All", "Canada", "USA", "UK", "Australia", "New Zealand", "Ireland"];
 
 const videos = [
-  { name: "Priya Sharma", country: "Canada", thumbnail: "🎓" },
-  { name: "Rahul Patel", country: "USA", thumbnail: "🎓" },
-  { name: "Ananya Gupta", country: "UK", thumbnail: "🎓" },
+  { name: "Priya Sharma", country: "Canada", thumbnail: "🎓", youtubeId: "WJ_VzU0m_q0" },
+  { name: "Rahul Patel", country: "USA", thumbnail: "🎓", youtubeId: "dQw4w9WgXcQ" },
+  { name: "Ananya Gupta", country: "UK", thumbnail: "🎓", youtubeId: "n3NILM7mCIE" },
 ];
 
 export default function TestimonialsPage() {
   const { content } = useContent();
   const [filter, setFilter] = useState("All");
+  const [openVideoId, setOpenVideoId] = useState<string | null>(null);
   const filtered = filter === "All" ? reviews : reviews.filter((r) => r.country === filter);
 
   const testimonialsSchema = {
@@ -73,7 +73,15 @@ export default function TestimonialsPage() {
           <h2 className="mb-8 text-center font-heading text-2xl font-bold text-foreground">Video Testimonials</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((v, i) => (
-              <motion.div key={v.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group cursor-pointer rounded-3xl border border-border bg-card shadow-card">
+              <motion.div 
+                key={v.name} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ delay: i * 0.1 }} 
+                onClick={() => setOpenVideoId(v.youtubeId)}
+                className="group cursor-pointer rounded-3xl border border-border bg-card shadow-card"
+              >
                 <div className="relative flex aspect-video items-center justify-center rounded-t-3xl bg-muted text-6xl">
                   {v.thumbnail}
                   <div className="absolute inset-0 flex items-center justify-center rounded-t-3xl bg-foreground/10 opacity-0 transition-opacity group-hover:opacity-100">
@@ -136,6 +144,20 @@ export default function TestimonialsPage() {
           </div>
         </div>
       </section>
+
+      <Dialog open={openVideoId !== null} onOpenChange={(open) => !open && setOpenVideoId(null)}>
+        <DialogContent className="max-w-3xl rounded-3xl p-1 bg-black overflow-hidden border-none aspect-video">
+          {openVideoId && (
+            <iframe
+              src={`https://www.youtube.com/embed/${openVideoId}?autoplay=1`}
+              title="Student Testimonial Video"
+              className="w-full h-full rounded-2xl"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          )}
+        </DialogContent>
+      </Dialog>
 
       <CTABanner />
       <Footer />

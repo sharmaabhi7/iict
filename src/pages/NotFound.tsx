@@ -2,7 +2,6 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FloatingActions } from "@/components/FloatingActions";
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -66,7 +65,6 @@ const NotFound = () => {
 
       {/* Footer & Floating Actions */}
       <Footer />
-      <FloatingActions />
     </div>
   );
 };

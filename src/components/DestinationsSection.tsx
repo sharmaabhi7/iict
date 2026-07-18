@@ -85,12 +85,12 @@ export function DestinationsSection() {
                 <p className="text-xs text-gray-700 leading-relaxed font-medium">
                   {c.desc}
                 </p>
-                <a
-                  href="#"
+                <Link
+                  to="/services"
                   className={`text-xs font-bold ${c.textColor} hover:underline mt-2 inline-flex items-center gap-1`}
                 >
                   Learn More &rarr;
-                </a>
+                </Link>
               </div>
 
               {/* Counselor Photo (Positioned Absolutely on bottom-right) */}

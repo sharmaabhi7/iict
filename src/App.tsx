@@ -26,6 +26,9 @@ const CountriesPage = lazy(() => import("./pages/CountriesPage.tsx"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage.tsx"));
 const AdminPage = lazy(() => import("./pages/AdminPage.tsx"));
 const WhatsAppJoinPage = lazy(() => import("./pages/WhatsAppJoinPage.tsx"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage.tsx"));
+const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage.tsx"));
+import { FloatingActions } from "./components/FloatingActions.tsx";
 
 const queryClient = new QueryClient();
 
@@ -63,8 +66,11 @@ const App = () => (
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/whatsapp" element={<WhatsAppJoinPage />} />
                 <Route path="/join-whatsapp" element={<WhatsAppJoinPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms-of-service" element={<TermsOfServicePage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <FloatingActions />
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>

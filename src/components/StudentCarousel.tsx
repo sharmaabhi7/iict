@@ -1,32 +1,38 @@
 import { useState, useEffect } from "react";
 import { Play } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const students = [
   {
     name: "Anisha",
     program: "General Medicine",
-    imgUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
+    imgUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
+    youtubeId: "WJ_VzU0m_q0"
   },
   {
     name: "Arya",
     program: "General Medicine",
-    imgUrl: "https://images.unsplash.com/photo-1594824813573-246434e33963?q=80&w=600&auto=format&fit=crop"
+    imgUrl: "https://images.unsplash.com/photo-1594824813573-246434e33963?q=80&w=600&auto=format&fit=crop",
+    youtubeId: "dQw4w9WgXcQ"
   },
   {
     name: "Anushka",
     program: "General Medicine",
-    imgUrl: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop"
+    imgUrl: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop",
+    youtubeId: "n3NILM7mCIE"
   },
   {
     name: "Aarya",
     program: "Medicine",
-    imgUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop"
+    imgUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop",
+    youtubeId: "o_9vA23uY4c"
   }
 ];
 
 export function StudentCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openVideoId, setOpenVideoId] = useState<string | null>(null);
 
   // Auto-scroll through dot groups on mobile
   useEffect(() => {
@@ -47,6 +53,7 @@ export function StudentCarousel() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
+              onClick={() => setOpenVideoId(student.youtubeId)}
               className={`relative overflow-hidden rounded-2xl h-80 shadow-md group cursor-pointer border border-gray-150 transition-transform duration-300 hover:-translate-y-1 ${
                 idx === activeIndex ? "ring-2 ring-red-600 sm:ring-0" : ""
               }`}
@@ -99,6 +106,20 @@ export function StudentCarousel() {
           ))}
         </div>
       </div>
+
+      <Dialog open={openVideoId !== null} onOpenChange={(open) => !open && setOpenVideoId(null)}>
+        <DialogContent className="max-w-3xl rounded-3xl p-1 bg-black overflow-hidden border-none aspect-video">
+          {openVideoId && (
+            <iframe
+              src={`https://www.youtube.com/embed/${openVideoId}?autoplay=1`}
+              title="Student Testimonial Video"
+              className="w-full h-full rounded-2xl"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

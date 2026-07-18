@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FloatingActions } from "@/components/FloatingActions";
 import { FAQSection } from "@/components/FAQSection";
 import { ConsultationBanner } from "@/components/ConsultationBanner";
 import { motion } from "framer-motion";
@@ -246,7 +245,6 @@ export default function CountryDetailPage() {
       <ConsultationBanner />
 
       <Footer />
-      <FloatingActions />
     </div>
   );
 }
