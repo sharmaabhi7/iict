@@ -100,7 +100,7 @@ export default function TermsOfServicePage() {
               <p className="mt-2 font-semibold text-slate-800">
                 Graam-Infotech (IICT)<br />
                 Email: info@graam-infotech.com<br />
-                Phone: +91 98972 78615
+                Phone: +91 98972 78615 / +91 93157 17679
               </p>
             </div>
           </div>

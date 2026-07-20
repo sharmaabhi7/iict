@@ -12,7 +12,7 @@ import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
 
 const milestones = [
-  { year: "2003", title: "Founded", desc: "Graam-Infotech established with a vision to democratize international education." },
+  { year: "1996", title: "Founded", desc: "Graam-Infotech established with a vision to democratize international education." },
   { year: "2007", title: "1,000 Students", desc: "Reached our first milestone — 1,000 students placed in top universities." },
   { year: "2012", title: "10 Country Partners", desc: "Expanded partnerships across 10 countries with 200+ university tie-ups." },
   { year: "2016", title: "50,000 Students", desc: "Celebrated 50,000 successful student placements globally." },
@@ -83,10 +83,10 @@ export default function AboutPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-3xl text-center">
             <span className="mb-3 inline-block text-sm font-semibold text-primary">ABOUT US</span>
             <h1 className="font-heading text-4xl font-extrabold text-foreground sm:text-5xl">
-              20+ Years of Transforming <span className="text-gradient-primary">Student Dreams</span>
+              30+ Years of Transforming <span className="text-gradient-primary">Student Dreams</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Since 2003, Graam-Infotech has been India's trusted partner for international education, guiding a quarter million students to the world's best universities.
+              Since 1996, Graam-Infotech has been India's trusted partner for international education, guiding a quarter million students to the world's best universities.
             </p>
           </motion.div>
         </div>
@@ -181,7 +181,7 @@ export default function AboutPage() {
         <div className="container">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mx-auto mb-14 max-w-2xl text-center">
             <span className="mb-3 inline-block text-sm font-semibold text-primary">OUR JOURNEY</span>
-            <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">20+ Years of Milestones</h2>
+            <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">30+ Years of Milestones</h2>
           </motion.div>
 
           <div className="mx-auto max-w-3xl space-y-6">
@@ -282,7 +282,7 @@ export default function AboutPage() {
 
                   {/* Book Session button */}
                   <a
-                    href={`https://wa.me/919897278615?text=Hello,%20I'd%20like%20to%20book%20a%20session%20with%20counselor%20${encodeURIComponent(t.name)}`}
+                    href={`https://wa.me/919315717679?text=Hello,%20I'd%20like%20to%20book%20a%20session%20with%20counselor%20${encodeURIComponent(t.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-1 border border-red-600 hover:bg-red-50 text-red-600 font-black text-xs px-5 py-2.5 rounded-full transition-colors"

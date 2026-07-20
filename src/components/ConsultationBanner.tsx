@@ -39,8 +39,8 @@ export function ConsultationBanner() {
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] uppercase text-gray-500 font-bold tracking-wider leading-none mb-1">WhatsApp</span>
-                <a href="https://wa.me/919897278615" target="_blank" rel="noopener noreferrer" className="text-lg font-black text-green-500 leading-none hover:underline">
-                  98972 78615
+                <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" className="text-lg font-black text-green-500 leading-none hover:underline">
+                  93157 17679
                 </a>
               </div>
             </div>

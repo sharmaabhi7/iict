@@ -88,7 +88,7 @@ export function Footer() {
               <span className="font-heading text-xl font-bold text-primary">Graam-Infotech</span>
             </Link>
             <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-              Your trusted partner for studying abroad. Guiding students to world-class education since 2010.
+              Your trusted partner for studying abroad. Guiding students to world-class education since 1996.
             </p>
             <div className="flex gap-2">
               <a
@@ -174,8 +174,8 @@ export function Footer() {
             <h4 className="mb-4 font-heading text-sm font-bold text-foreground">Contact Us</h4>
             <ul className="mb-6 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> info@graam-infotech.com</li>
-              <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> +91 98972 78615</li>
-              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Mumbai, Delhi, Bangalore</li>
+              <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> +91 98972 78615 / +91 93157 17679</li>
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Delhi, Mumbai, South Korea</li>
             </ul>
             <h4 className="mb-2 font-heading text-sm font-bold text-foreground">Newsletter</h4>
             <form className="flex gap-2" onSubmit={handleNewsletterSubmit}>

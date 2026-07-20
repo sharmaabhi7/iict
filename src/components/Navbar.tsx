@@ -63,7 +63,7 @@ export function Navbar() {
             </svg>
             <div className="flex flex-col">
               <span className="text-[10px] uppercase text-gray-500 font-medium">Whatsapp Us</span>
-              <a href="https://wa.me/919897278615" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-500 hover:underline">98972 78615</a>
+              <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-500 hover:underline">93157 17679</a>
             </div>
           </div>
         </div>

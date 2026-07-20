@@ -25,9 +25,9 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const offices = [
-  { city: "Mumbai (Head Office)", address: "5th Floor, Trade Centre, BKC, Mumbai 400051", phone: "+91 22 6789 0123" },
-  { city: "Delhi", address: "101, NH-19, above Sandoz Restaurant, CRRI, Ishwar Nagar, Okhla, New Delhi, Delhi 110020", phone: "+91 98972 78615" },
-  { city: "Bangalore", address: "2nd Floor, MG Road, Bangalore 560001", phone: "+91 80 2345 6789" },
+  { city: "Delhi Office", address: "101, NH-19, above Sandoz Restaurant, CRRI, Ishwar Nagar, Okhla, New Delhi, Delhi 110020", phone: "+91 98972 78615" },
+  { city: "Mumbai Office", address: "5th Floor, Trade Centre, BKC, Mumbai 400051", phone: "+91 98972 78615" },
+  { city: "South Korea Office", address: "Seoul, South Korea", phone: "+91 93157 17679" },
 ];
 
 import { useSearchParams } from "react-router-dom";
@@ -209,7 +209,7 @@ export default function ContactPage() {
             className="space-y-6 lg:col-span-2"
           >
             {/* WhatsApp */}
-             <a href="https://wa.me/919897278615" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
+             <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100">
                 <MessageCircle className="h-6 w-6 text-green-600" />
               </div>

@@ -113,7 +113,7 @@ export default function GermanyProgramPage() {
   };
 
   const handleWhatsAppChat = () => {
-    window.open("https://wa.me/919897278615?text=Hi%2C%20I%20am%20interested%20in%20the%20Indo%20German%20Skill%20Program%20(IGSP).%20Please%2520guide%20me.", "_blank");
+    window.open("https://wa.me/919315717679?text=Hi%2C%20I%20am%20interested%20in%20the%20Indo%20German%20Skill%20Program%20(IGSP).%20Please%2520guide%20me.", "_blank");
   };
 
   return (

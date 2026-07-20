@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, Clock, Award, HeartHandshake, Users, Target } from "lucide-react";
 
 const reasons = [
-  { icon: Shield, title: "20+ Years Experience", desc: "Two decades of trusted expertise guiding students to top universities worldwide." },
+  { icon: Shield, title: "30+ Years Experience", desc: "Three decades of trusted expertise guiding students to top universities worldwide." },
   { icon: Target, title: "98.5% Visa Success", desc: "Industry-leading visa approval rates through meticulous preparation and expert guidance." },
   { icon: Users, title: "250,000+ Students", desc: "A quarter million students have trusted us with their study abroad dreams." },
   { icon: Award, title: "Certified Counsellors", desc: "Our advisors hold international certifications and undergo regular training." },
