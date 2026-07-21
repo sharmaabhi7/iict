@@ -67,7 +67,7 @@ export default function GermanyProgramPage() {
 
   const onSubmit = async (data: LeadFormValues) => {
     try {
-      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
 
       const newLead = {
         name: data.name,

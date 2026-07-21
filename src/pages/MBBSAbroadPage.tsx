@@ -181,7 +181,7 @@ export default function MBBSAbroadPage() {
 
     setIsSubmittingPredictor(true);
     try {
-      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
 
       const newLead = {
@@ -239,7 +239,7 @@ export default function MBBSAbroadPage() {
 
     setIsSubmittingCounselling(true);
     try {
-      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
 
       const newLead = {

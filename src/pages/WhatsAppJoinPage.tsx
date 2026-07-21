@@ -58,7 +58,7 @@ export default function WhatsAppJoinPage() {
   const [copied, setCopied] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  const groupInviteUrl = "https://chat.whatsapp.com/IyzqFErPZGHBdTbS8RfTXt?s=cl&p=a&ilr=1";
+  const groupInviteUrl = "https://chat.whatsapp.com/KLY32gyoOLoGOuxOO9zcBr";
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark") || localStorage.getItem("theme") === "dark";

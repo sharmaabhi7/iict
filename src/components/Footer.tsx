@@ -29,7 +29,7 @@ export function Footer() {
     if (!newsletterEmail.trim()) return;
 
     try {
-      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       
       // Save local backup lead
       const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");

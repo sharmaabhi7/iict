@@ -83,7 +83,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterForm) => {
     setIsSubmitting(true);
     try {
-      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || "";
+      const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       
       // Save locally to localStorage leads database as a fallback/draft backup
       const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");

@@ -66,7 +66,7 @@ export default function AdminPage() {
 
   // Load Google Sheets / Leads settings on mount
   useEffect(() => {
-    const savedWebhook = localStorage.getItem("iict_google_sheets_webhook") || "";
+    const savedWebhook = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
     setSheetsWebhook(savedWebhook);
     
     const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
