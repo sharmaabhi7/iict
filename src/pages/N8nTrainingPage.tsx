@@ -166,7 +166,7 @@ export default function N8nTrainingPage() {
     {
       feature: "Certificate",
       desc: "Proof for CV / LinkedIn",
-      iict: "Certified by IICT, Graam-Infotech Overseas Educon Ltd.",
+      iict: "Certified by IICT, Graam-Infotech.",
       others: "Generic PDF, no institution",
     },
     {
@@ -664,7 +664,7 @@ export default function N8nTrainingPage() {
               { id: "03", title: "Taught in Hindi", body: "Hindi language instruction so anyone can follow along comfortably, even without strong English." },
               { id: "04", title: "1 hour/day for 3 days", body: "Short, focused sessions. Learn a practical skill without giving up your entire schedule." },
               { id: "05", title: "Live n8n configuration", body: "No vague slides. We open n8n and wire each node in front of you — credentials, prompts, and branching." },
-              { id: "06", title: "Certificate from IICT", body: "Get a verifiable certificate from Graam-Infotech Overseas Educon Ltd. to add to your CV and LinkedIn." }
+              { id: "06", title: "Certificate from IICT", body: "Get a verifiable certificate from Graam-Infotech. to add to your CV and LinkedIn." }
             ].map((adv, idx) => (
               <div key={idx} className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-sm font-extrabold text-primary">
