@@ -3,17 +3,17 @@ import { useContent, SiteContent } from "../contexts/ContentContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { 
-  Save, 
-  RefreshCw, 
-  Github, 
-  Globe, 
-  LayoutGrid, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Key, 
-  CheckCircle2, 
+import {
+  Save,
+  RefreshCw,
+  Github,
+  Globe,
+  LayoutGrid,
+  Phone,
+  Mail,
+  MapPin,
+  Key,
+  CheckCircle2,
   AlertCircle,
   FileText,
   Sparkles,
@@ -37,7 +37,7 @@ export default function AdminPage() {
   const [ghRepo, setGhRepo] = useState("sharmaabhi7/iict");
   const [ghBranch, setGhBranch] = useState("main");
   const [ghCommitMsg, setGhCommitMsg] = useState("chore: update website content via admin panel");
-  
+
   // Publishing States
   const [isPublishing, setIsPublishing] = useState(false);
   const [pubStatus, setPubStatus] = useState<{ type: "success" | "error" | "info" | null; msg: string }>({ type: null, msg: "" });
@@ -53,7 +53,7 @@ export default function AdminPage() {
     const savedToken = localStorage.getItem("iict_gh_token") || "";
     const savedRepo = localStorage.getItem("iict_gh_repo") || "sharmaabhi7/iict";
     const savedBranch = localStorage.getItem("iict_gh_branch") || "main";
-    
+
     setGhToken(savedToken);
     setGhRepo(savedRepo);
     setGhBranch(savedBranch);
@@ -68,7 +68,7 @@ export default function AdminPage() {
   useEffect(() => {
     const savedWebhook = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
     setSheetsWebhook(savedWebhook);
-    
+
     const savedLeads = JSON.parse(localStorage.getItem("iict_leads") || "[]");
     setLeads(savedLeads);
   }, []);
@@ -103,7 +103,7 @@ export default function AdminPage() {
         },
         body: searchParams.toString(),
       });
-      
+
       toast.success("Test request sent! Check your Google Sheet to verify the new row.", {
         duration: 5000,
       });
@@ -196,7 +196,7 @@ export default function AdminPage() {
   // GitHub Publish logic
   const handlePublishToGithub = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const cleanToken = ghToken.trim();
     const cleanRepo = ghRepo.trim();
     const cleanBranch = ghBranch.trim();
@@ -220,7 +220,7 @@ export default function AdminPage() {
     try {
       // Step 1: Fetch current file to get the SHA
       setPubStatus({ type: "info", msg: "Fetching current file metadata from repository..." });
-      
+
       const getRes = await fetch(`${contentUrl}?ref=${cleanBranch}`, {
         headers: {
           Authorization: `Bearer ${cleanToken}`,
@@ -247,7 +247,7 @@ export default function AdminPage() {
 
       // Step 3: Put file (Commit)
       setPubStatus({ type: "info", msg: "Pushing commit directly to GitHub repository..." });
-      
+
       const payload: any = {
         message: ghCommitMsg.trim(),
         content: base64Content,
@@ -329,7 +329,7 @@ export default function AdminPage() {
 
       {/* Main Admin UI */}
       <div className="container py-12 px-4 max-w-7xl">
-        
+
         {/* Header Title */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
@@ -346,15 +346,15 @@ export default function AdminPage() {
 
           <div className="flex flex-wrap gap-3">
             {isDraft && (
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={handleReset}
                 className="border-slate-800 text-slate-400 hover:text-white hover:bg-slate-900"
               >
                 <RefreshCw className="h-4 w-4 mr-2" /> Reset Draft
               </Button>
             )}
-            <Button 
+            <Button
               onClick={handleSaveLocal}
               className="bg-teal-600 hover:bg-teal-500 text-white font-semibold"
             >
@@ -410,7 +410,7 @@ export default function AdminPage() {
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                       Website Name
                     </label>
-                    <Input 
+                    <Input
                       value={formState.global.siteName}
                       onChange={(e) => handleGlobalChange("siteName", e.target.value)}
                       className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -421,7 +421,7 @@ export default function AdminPage() {
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                       Logo URL / Image Link
                     </label>
-                    <Input 
+                    <Input
                       value={formState.global.logoUrl}
                       onChange={(e) => handleGlobalChange("logoUrl", e.target.value)}
                       className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -432,7 +432,7 @@ export default function AdminPage() {
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                       <Mail className="h-3.5 w-3.5 text-teal-500" /> Admissions Email
                     </label>
-                    <Input 
+                    <Input
                       value={formState.global.contactEmail}
                       onChange={(e) => handleGlobalChange("contactEmail", e.target.value)}
                       className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -443,7 +443,7 @@ export default function AdminPage() {
                     <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                       <Phone className="h-3.5 w-3.5 text-teal-500" /> Phone Number (e.g. +91-XXXXX XXXXX)
                     </label>
-                    <Input 
+                    <Input
                       value={formState.global.contactPhone}
                       onChange={(e) => handleGlobalChange("contactPhone", e.target.value)}
                       className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -455,7 +455,7 @@ export default function AdminPage() {
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                     SEO Keywords (Comma Separated)
                   </label>
-                  <Textarea 
+                  <Textarea
                     value={formState.global.keywords}
                     onChange={(e) => handleGlobalChange("keywords", e.target.value)}
                     className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg"
@@ -470,7 +470,7 @@ export default function AdminPage() {
                   <div className="grid gap-6 md:grid-cols-3">
                     <div className="space-y-2">
                       <label className="text-xs text-slate-400 font-semibold">City (addressLocality)</label>
-                      <Input 
+                      <Input
                         value={formState.global.addressLocality}
                         onChange={(e) => handleGlobalChange("addressLocality", e.target.value)}
                         className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg h-11"
@@ -478,7 +478,7 @@ export default function AdminPage() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs text-slate-400 font-semibold">State / Region (addressRegion)</label>
-                      <Input 
+                      <Input
                         value={formState.global.addressRegion}
                         onChange={(e) => handleGlobalChange("addressRegion", e.target.value)}
                         className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg h-11"
@@ -486,7 +486,7 @@ export default function AdminPage() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs text-slate-400 font-semibold">Country Code (addressCountry)</label>
-                      <Input 
+                      <Input
                         value={formState.global.addressCountry}
                         onChange={(e) => handleGlobalChange("addressCountry", e.target.value)}
                         className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg h-11"
@@ -514,7 +514,7 @@ export default function AdminPage() {
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Main Hero Title Heading
                   </label>
-                  <Input 
+                  <Input
                     value={formState.hero.title}
                     onChange={(e) => handleHeroChange("title", e.target.value)}
                     className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -525,7 +525,7 @@ export default function AdminPage() {
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Hero Subtitle (supports <code className="text-teal-400">[highlight]</code> brackets)
                   </label>
-                  <Input 
+                  <Input
                     value={formState.hero.subtitle}
                     onChange={(e) => handleHeroChange("subtitle", e.target.value)}
                     className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -539,7 +539,7 @@ export default function AdminPage() {
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Short Description / Program Category List
                   </label>
-                  <Input 
+                  <Input
                     value={formState.hero.description}
                     onChange={(e) => handleHeroChange("description", e.target.value)}
                     className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11"
@@ -604,12 +604,12 @@ export default function AdminPage() {
                           <span className="text-[10px] font-black uppercase text-teal-400 tracking-wider">Page Key</span>
                           <h4 className="text-sm font-bold text-white uppercase">{pageKey} PAGE</h4>
                         </div>
-                        
+
                         <div className="space-y-2">
                           <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                             SEO Page Title
                           </label>
-                          <Input 
+                          <Input
                             value={formState.pages[pageKey].title}
                             onChange={(e) => handlePageSEOChange(pageKey, "title", e.target.value)}
                             className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg h-11"
@@ -620,7 +620,7 @@ export default function AdminPage() {
                           <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                             SEO Meta Description (Recommended under 160 chars)
                           </label>
-                          <Textarea 
+                          <Textarea
                             value={formState.pages[pageKey].description}
                             onChange={(e) => handlePageSEOChange(pageKey, "description", e.target.value)}
                             className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg"
@@ -636,7 +636,7 @@ export default function AdminPage() {
                             <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                               Schema Markup Description
                             </label>
-                            <Textarea 
+                            <Textarea
                               value={(formState.pages[pageKey] as any).schemaDescription || ""}
                               onChange={(e) => handlePageSEOChange(pageKey, "schemaDescription", e.target.value)}
                               className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg"
@@ -655,7 +655,7 @@ export default function AdminPage() {
           {/* TAB 4: PUBLISH / GITHUB SYNC */}
           <TabsContent value="publish" className="outline-none space-y-6">
             <div className="grid gap-6 lg:grid-cols-3">
-              
+
               {/* GitHub Credentials Form */}
               <Card className="bg-slate-900/60 border-slate-800 shadow-xl backdrop-blur-sm rounded-2xl lg:col-span-2">
                 <CardHeader>
@@ -668,12 +668,12 @@ export default function AdminPage() {
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handlePublishToGithub} className="space-y-5">
-                    
+
                     <div className="space-y-2">
                       <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <Lock className="h-3.5 w-3.5 text-slate-500" /> GitHub Personal Access Token (Classic or Fine-grained)
                       </label>
-                      <Input 
+                      <Input
                         type="password"
                         placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxx"
                         value={ghToken}
@@ -691,7 +691,7 @@ export default function AdminPage() {
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                           <Link className="h-3.5 w-3.5 text-slate-500" /> Repository Name (owner/repo)
                         </label>
-                        <Input 
+                        <Input
                           placeholder="sharmaabhi7/iict"
                           value={ghRepo}
                           onChange={(e) => setGhRepo(e.target.value)}
@@ -704,7 +704,7 @@ export default function AdminPage() {
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                           Branch Name
                         </label>
-                        <Input 
+                        <Input
                           placeholder="main"
                           value={ghBranch}
                           onChange={(e) => setGhBranch(e.target.value)}
@@ -718,7 +718,7 @@ export default function AdminPage() {
                       <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                         Commit Message
                       </label>
-                      <Input 
+                      <Input
                         value={ghCommitMsg}
                         onChange={(e) => setGhCommitMsg(e.target.value)}
                         className="bg-slate-950 border-slate-800 text-slate-100 rounded-lg h-11"
@@ -727,8 +727,8 @@ export default function AdminPage() {
                     </div>
 
                     <div className="pt-2">
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         disabled={isPublishing}
                         className="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold h-11 rounded-lg transition-all"
                       >
@@ -747,13 +747,12 @@ export default function AdminPage() {
 
                   {pubStatus.type && (
                     <div className="mt-6">
-                      <Alert className={`rounded-xl shadow-md border ${
-                        pubStatus.type === "success" 
-                          ? "bg-emerald-950/40 border-emerald-900 text-emerald-200" 
-                          : pubStatus.type === "error" 
-                          ? "bg-rose-950/40 border-rose-900 text-rose-200" 
-                          : "bg-slate-950/80 border-slate-800 text-slate-300"
-                      }`}>
+                      <Alert className={`rounded-xl shadow-md border ${pubStatus.type === "success"
+                          ? "bg-emerald-950/40 border-emerald-900 text-emerald-200"
+                          : pubStatus.type === "error"
+                            ? "bg-rose-950/40 border-rose-900 text-rose-200"
+                            : "bg-slate-950/80 border-slate-800 text-slate-300"
+                        }`}>
                         {pubStatus.type === "success" ? (
                           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                         ) : pubStatus.type === "error" ? (
@@ -791,9 +790,9 @@ export default function AdminPage() {
                         src/data/siteContent.json
                       </code>
                     </p>
-                    <Button 
+                    <Button
                       onClick={handleDownloadJSON}
-                      variant="outline" 
+                      variant="outline"
                       className="w-full border-slate-800 hover:bg-slate-900 text-slate-300 hover:text-white"
                     >
                       Download siteContent.json
@@ -832,7 +831,7 @@ export default function AdminPage() {
           <TabsContent value="sheets" className="outline-none space-y-6">
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 space-y-6">
-                
+
                 {/* Webhook Configuration Card */}
                 <Card className="bg-slate-900/60 border-slate-800 shadow-xl backdrop-blur-sm rounded-2xl">
                   <CardHeader>
@@ -849,13 +848,13 @@ export default function AdminPage() {
                         Apps Script Web App Webhook URL
                       </label>
                       <div className="flex gap-3">
-                        <Input 
+                        <Input
                           placeholder="https://script.google.com/macros/s/.../exec"
                           value={sheetsWebhook}
                           onChange={(e) => setSheetsWebhook(e.target.value)}
                           className="bg-slate-950 border-slate-800 text-slate-100 focus:border-teal-500 focus:ring-teal-500 rounded-lg h-11 flex-1 font-mono text-xs text-white"
                         />
-                        <Button 
+                        <Button
                           onClick={handleSaveSheetsWebhook}
                           className="bg-teal-600 hover:bg-teal-500 text-white font-semibold h-11 px-5"
                         >
@@ -896,17 +895,17 @@ export default function AdminPage() {
                     <div className="flex gap-2">
                       {leads.length > 0 && (
                         <>
-                          <Button 
+                          <Button
                             onClick={handleDownloadLeads}
-                            variant="outline" 
+                            variant="outline"
                             size="sm"
                             className="border-slate-850 hover:bg-slate-900 text-xs font-semibold text-slate-350 hover:text-white"
                           >
                             Download JSON
                           </Button>
-                          <Button 
+                          <Button
                             onClick={handleClearLeads}
-                            variant="destructive" 
+                            variant="destructive"
                             size="sm"
                             className="bg-red-955/40 border border-red-800/60 hover:bg-red-900 text-red-300 text-xs font-semibold"
                           >
@@ -977,7 +976,7 @@ export default function AdminPage() {
                       <li>Create a new spreadsheet on Google Sheets.</li>
                       <li>Name the sheet columns in Row 1: <strong className="text-slate-300">Timestamp, Name, Email, Phone, WhatsApp, Country, Program, Message</strong>.</li>
                       <li>Go to the main menu and click on <strong>Extensions &gt; Apps Script</strong>.</li>
-                      <li>Delete any existing boilerplates inside the editor and paste the Google Apps Script code snippet.</li>
+                      <li>Delete any existing boilerplates inside editor and paste the Google Apps Script code snippet.</li>
                       <li>Click the <strong>Save</strong> disk icon.</li>
                       <li>Click <strong>Deploy &gt; New Deployment</strong>.</li>
                       <li>Click the gear icon and choose <strong>Web app</strong>.</li>
