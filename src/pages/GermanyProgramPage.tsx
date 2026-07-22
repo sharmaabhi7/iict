@@ -33,7 +33,8 @@ import {
   Plane,
   Home,
   MessageCircle,
-  HelpCircle
+  HelpCircle,
+  Loader2
 } from "lucide-react";
 
 import healthcarePdf from "@/assets/igsp/IGSP_D-GCA_Presentation.pdf";
@@ -65,7 +66,10 @@ export default function GermanyProgramPage() {
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onSubmit = async (data: LeadFormValues) => {
+    setIsSubmitting(true);
     try {
       const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
 
@@ -113,6 +117,8 @@ export default function GermanyProgramPage() {
       console.error("Error submitting form:", error);
       toast.success("Thank you! Your consultation request has been received.");
       form.reset();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -300,8 +306,19 @@ export default function GermanyProgramPage() {
                       )}
                     />
 
-                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-5 rounded-xl uppercase tracking-wider mt-4">
-                      Submit Consultation Request
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-5 rounded-xl uppercase tracking-wider mt-4 flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit Consultation Request"
+                      )}
                     </Button>
 
                     <Button

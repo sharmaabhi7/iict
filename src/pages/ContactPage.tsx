@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,6 +31,7 @@ const offices = [
 ];
 
 import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function ContactPage() {
   const { content } = useContent();
@@ -46,7 +47,10 @@ export default function ContactPage() {
     defaultValues: { name: "", email: "", phone: "", service: defaultService, message: defaultMessage },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const onSubmit = async (data: ContactForm) => {
+    setIsSubmitting(true);
     try {
       const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       
@@ -93,6 +97,8 @@ export default function ContactPage() {
       console.error("Error submitting contact form to sheets:", error);
       toast.success("Thank you! We'll get back to you within 24 hours."); // Keep success UX
       form.reset();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -194,8 +200,15 @@ export default function ContactPage() {
                     <FormMessage />
                   </FormItem>
                 )} />
-                <Button type="submit" size="lg" className="w-full sm:w-auto">
-                  Send Message
+                <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto flex items-center justify-center gap-2">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </Button>
               </form>
             </Form>

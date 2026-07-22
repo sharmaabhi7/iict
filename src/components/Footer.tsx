@@ -1,4 +1,4 @@
-import { GraduationCap, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { GraduationCap, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Youtube, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/iict-logo.jpeg";
 import { Link } from "react-router-dom";
@@ -24,10 +24,13 @@ const services = [
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail.trim()) return;
 
+    setIsSubmitting(true);
     try {
       const webhookUrl = localStorage.getItem("iict_google_sheets_webhook") || import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK || "";
       
@@ -74,6 +77,8 @@ export function Footer() {
       console.error("Error subscribing to newsletter:", error);
       toast.success("Thank you for subscribing to our newsletter!"); // Keep success UX
       setNewsletterEmail("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -187,8 +192,15 @@ export function Footer() {
                 className="flex-1 rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
                 required
               />
-              <Button size="sm" type="submit">
-                Subscribe
+              <Button size="sm" type="submit" disabled={isSubmitting} className="flex items-center gap-1">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="h-3 w-3 animate-spin" />
+                    Subscribing...
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </Button>
             </form>
           </div>

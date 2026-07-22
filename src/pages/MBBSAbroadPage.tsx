@@ -39,7 +39,8 @@ import {
   Coins,
   FileCheck,
   Plane,
-  HeartHandshake
+  HeartHandshake,
+  Loader2
 } from "lucide-react";
 import mbbsImg from "@/assets/mbbs-hero.jpg";
 
@@ -529,9 +530,16 @@ export default function MBBSAbroadPage() {
                     <Button
                       type="submit"
                       disabled={isSubmittingPredictor}
-                      className="w-full bg-orange-600 font-bold hover:bg-orange-500 rounded-xl py-6 text-white shadow-lg active:scale-95 transition-transform"
+                      className="w-full bg-orange-600 font-bold hover:bg-orange-500 rounded-xl py-6 text-white shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2"
                     >
-                      {isSubmittingPredictor ? "Analyzing Score..." : "Predict Colleges Now"}
+                      {isSubmittingPredictor ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Analyzing Score...
+                        </>
+                      ) : (
+                        "Predict Colleges Now"
+                      )}
                     </Button>
                   </motion.form>
                 ) : (
@@ -971,9 +979,16 @@ export default function MBBSAbroadPage() {
                     <Button
                       type="submit"
                       disabled={isSubmittingCounselling}
-                      className="w-full bg-orange-600 font-bold hover:bg-orange-500 rounded-xl py-6 text-white shadow-lg active:scale-95 transition-transform"
+                      className="w-full bg-orange-600 font-bold hover:bg-orange-500 rounded-xl py-6 text-white shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2"
                     >
-                      {isSubmittingCounselling ? "Submitting..." : "Submit Enquiry"}
+                      {isSubmittingCounselling ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit Enquiry"
+                      )}
                     </Button>
                   </motion.form>
                 ) : (

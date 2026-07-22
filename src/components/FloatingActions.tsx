@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, ArrowUp, X, Send } from "lucide-react";
+import { MessageCircle, ArrowUp, X, Send, Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -241,13 +241,16 @@ export function FloatingActions() {
                   className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div 
-                    className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-xs leading-relaxed ${
+                    className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-xs leading-relaxed flex items-center gap-1.5 ${
                       m.sender === "user" 
                         ? "bg-green-600 text-white rounded-tr-none shadow-sm font-medium" 
                         : "bg-white text-slate-800 rounded-tl-none border border-slate-200 shadow-sm font-medium"
                     }`}
                   >
-                    {m.text}
+                    {m.text === "Connecting and saving your request..." && (
+                      <Loader2 className="h-3.5 w-3.5 animate-spin text-green-600 shrink-0" />
+                    )}
+                    <span>{m.text}</span>
                   </div>
                 </div>
               ))}

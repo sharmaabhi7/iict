@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -263,7 +263,14 @@ export function HeroSection() {
                 disabled={isSubmitting}
                 className="w-full h-12 bg-[#cc0000] hover:bg-[#aa0000] text-white text-base font-semibold group flex items-center justify-between px-6 mt-4"
               >
-                <span>{isSubmitting ? "Booking..." : "Book Free Counselling"}</span>
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    Booking...
+                  </span>
+                ) : (
+                  <span>Book Free Counselling</span>
+                )}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
