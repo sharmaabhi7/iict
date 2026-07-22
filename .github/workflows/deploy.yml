@@ -18,8 +18,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
-            # Navigate to project directory (Customize this path as needed on your VPS)
-            cd /var/www/html/iict
+            cd /var/www/new-gram
             
             # Fetch latest changes
             git pull origin main
