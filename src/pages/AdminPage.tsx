@@ -748,10 +748,10 @@ export default function AdminPage() {
                   {pubStatus.type && (
                     <div className="mt-6">
                       <Alert className={`rounded-xl shadow-md border ${pubStatus.type === "success"
-                          ? "bg-emerald-950/40 border-emerald-900 text-emerald-200"
-                          : pubStatus.type === "error"
-                            ? "bg-rose-950/40 border-rose-900 text-rose-200"
-                            : "bg-slate-950/80 border-slate-800 text-slate-300"
+                        ? "bg-emerald-950/40 border-emerald-900 text-emerald-200"
+                        : pubStatus.type === "error"
+                          ? "bg-rose-950/40 border-rose-900 text-rose-200"
+                          : "bg-slate-950/80 border-slate-800 text-slate-300"
                         }`}>
                         {pubStatus.type === "success" ? (
                           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
@@ -976,7 +976,7 @@ export default function AdminPage() {
                       <li>Create a new spreadsheet on Google Sheets.</li>
                       <li>Name the sheet columns in Row 1: <strong className="text-slate-300">Timestamp, Name, Email, Phone, WhatsApp, Country, Program, Message</strong>.</li>
                       <li>Go to the main menu and click on <strong>Extensions &gt; Apps Script</strong>.</li>
-                      <li>Delete any existing boilerplates inside editor and paste the Google Apps Script code snippet.</li>
+                      <li>Delete any existing boilerplates the inside editor and paste the Google Apps Script code snippet.</li>
                       <li>Click the <strong>Save</strong> disk icon.</li>
                       <li>Click <strong>Deploy &gt; New Deployment</strong>.</li>
                       <li>Click the gear icon and choose <strong>Web app</strong>.</li>
