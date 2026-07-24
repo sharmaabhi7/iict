@@ -111,12 +111,14 @@ export default function GermanyProgramPage() {
         });
       }
 
-      toast.success("Thank you! Your free counselling session has been booked. A Germany expert will contact you shortly.");
+      toast.success("Thank you! Redirecting to WhatsApp...");
       form.reset();
+      window.location.href = "https://wa.me/919315717679?text=hii%20i%20am%20just%20submit%20the%20form%20for%20IGSP";
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.success("Thank you! Your consultation request has been received.");
+      toast.success("Thank you! Redirecting to WhatsApp...");
       form.reset();
+      window.location.href = "https://wa.me/919315717679?text=hii%20i%20am%20just%20submit%20the%20form%20for%20IGSP";
     } finally {
       setIsSubmitting(false);
     }
