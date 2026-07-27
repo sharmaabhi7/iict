@@ -30,6 +30,7 @@ const WhatsAppJoinPage = lazy(() => import("./pages/WhatsAppJoinPage.tsx"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage.tsx"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage.tsx"));
 import { FloatingActions } from "./components/FloatingActions.tsx";
+import { MetaPixelTracker } from "./components/MetaPixelTracker.tsx";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <MetaPixelTracker />
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" element={<IndexPage />} />

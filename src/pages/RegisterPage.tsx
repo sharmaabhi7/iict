@@ -20,6 +20,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { toast } from "sonner";
 import { CheckCircle2, ChevronRight, Clipboard, HelpCircle, Loader2, Sparkles } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
+import { trackPixelEvent } from "@/lib/metaPixel";
 
 const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -125,12 +126,29 @@ export default function RegisterPage() {
         body: searchParams.toString(),
       });
 
+      // Track Facebook Pixel Lead event
+      trackPixelEvent("Lead", {
+        content_name: data.program || "General Registration",
+        content_category: data.country || "General",
+        value: 0,
+        currency: "INR"
+      });
+
       toast.success("Successfully Registered!", {
         description: "Your information is securely stored in our Google Sheets databases. We will contact you shortly.",
       });
       setIsSuccess(true);
     } catch (error) {
       console.error("Error submitting lead:", error);
+
+      // Track Facebook Pixel Lead event even on connection failures, since they submitted their info
+      trackPixelEvent("Lead", {
+        content_name: (data?.program || "General Registration") + " (Offline/Local)",
+        content_category: data?.country || "General",
+        value: 0,
+        currency: "INR"
+      });
+
       toast.error("Registration stored locally due to network issues", {
         description: "We secured your information locally. Our system will attempt to upload it once connection is active.",
       });

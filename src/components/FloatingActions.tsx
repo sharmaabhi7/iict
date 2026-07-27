@@ -3,6 +3,7 @@ import { MessageCircle, ArrowUp, X, Send, Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { trackPixelEvent } from "@/lib/metaPixel";
 
 interface ChatMessage {
   sender: "bot" | "user";
@@ -90,6 +91,14 @@ export function FloatingActions() {
         });
       }
 
+      // Track Facebook Pixel Lead event
+      trackPixelEvent("Lead", {
+        content_name: "Live Chat Counseling",
+        content_category: data.interest || "General Chat",
+        value: 0,
+        currency: "INR"
+      });
+
       setMessages(prev => [
         ...prev.filter(m => m.text !== "Connecting and saving your request..."),
         { 
@@ -99,6 +108,15 @@ export function FloatingActions() {
       ]);
     } catch (error) {
       console.error("Error submitting chat lead:", error);
+
+      // Track Facebook Pixel Lead event even on connection failures
+      trackPixelEvent("Lead", {
+        content_name: "Live Chat Counseling (Offline/Local)",
+        content_category: data.interest || "General Chat",
+        value: 0,
+        currency: "INR"
+      });
+
       setMessages(prev => [
         ...prev.filter(m => m.text !== "Connecting and saving your request..."),
         { 

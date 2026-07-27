@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { toast } from "sonner";
+import { trackPixelEvent } from "@/lib/metaPixel";
 import {
   BookOpen,
   Award,
@@ -111,11 +112,28 @@ export default function GermanyProgramPage() {
         });
       }
 
+      // Track Facebook Pixel Lead event
+      trackPixelEvent("Lead", {
+        content_name: "Indo-German Skill Program (IGSP)",
+        content_category: "Germany",
+        value: 0,
+        currency: "INR"
+      });
+
       toast.success("Thank you! Redirecting to WhatsApp...");
       form.reset();
       window.location.href = "https://wa.me/919315717679?text=hii%20i%20am%20just%20submit%20the%20form%20for%20IGSP";
     } catch (error) {
       console.error("Error submitting form:", error);
+
+      // Track Facebook Pixel Lead event even on connection failures, since they submitted their info
+      trackPixelEvent("Lead", {
+        content_name: "Indo-German Skill Program (IGSP) (Offline/Local)",
+        content_category: "Germany",
+        value: 0,
+        currency: "INR"
+      });
+
       toast.success("Thank you! Redirecting to WhatsApp...");
       form.reset();
       window.location.href = "https://wa.me/919315717679?text=hii%20i%20am%20just%20submit%20the%20form%20for%20IGSP";

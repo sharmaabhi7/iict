@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
+import { trackPixelEvent } from "@/lib/metaPixel";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -91,10 +92,27 @@ export default function ContactPage() {
         });
       }
 
+      // Track Facebook Pixel Lead event
+      trackPixelEvent("Lead", {
+        content_name: "Contact Us Form",
+        content_category: data.service,
+        value: 0,
+        currency: "INR"
+      });
+
       toast.success("Thank you! We'll get back to you within 24 hours.");
       form.reset();
     } catch (error) {
       console.error("Error submitting contact form to sheets:", error);
+      
+      // Track Facebook Pixel Lead event even if google sheets fails, since user clicked submit
+      trackPixelEvent("Lead", {
+        content_name: "Contact Us Form (Offline/Local)",
+        content_category: data.service,
+        value: 0,
+        currency: "INR"
+      });
+
       toast.success("Thank you! We'll get back to you within 24 hours."); // Keep success UX
       form.reset();
     } finally {
