@@ -12,7 +12,7 @@ import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
 
 const milestones = [
-  { year: "1996", title: "Founded", desc: "Graam-Infotech established with a vision to democratize international education." },
+  { year: "1996", title: "Founded", desc: "Graam-Infotech PVT LTD established with a vision to democratize international education." },
   { year: "2007", title: "1,000 Students", desc: "Reached our first milestone — 1,000 students placed in top universities." },
   { year: "2012", title: "10 Country Partners", desc: "Expanded partnerships across 10 countries with 200+ university tie-ups." },
   { year: "2016", title: "50,000 Students", desc: "Celebrated 50,000 successful student placements globally." },
