@@ -86,7 +86,7 @@ export default function AboutPage() {
               30+ Years of Transforming <span className="text-gradient-primary">Student Dreams</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Since 1996, Graam-Infotech has been India's trusted partner for international education, guiding a quarter million students to the world's best universities.
+              Since 1996, GRAAMIICT EDUCATION PVT.LTD has been India's trusted partner for international education, guiding a quarter million students to the world's best universities.
             </p>
           </motion.div>
         </div>
