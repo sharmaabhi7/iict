@@ -2,7 +2,7 @@ import { TopHeader } from "@/components/TopHeader";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { UniversitySearch } from "@/components/UniversitySearch";
-import { StudentCarousel } from "@/components/StudentCarousel";
+import { InstagramGrid } from "@/components/InstagramGrid";
 import { SuccessSection } from "@/components/SuccessSection";
 import { ProgramCards } from "@/components/ProgramCards";
 import { ConsultationBanner } from "@/components/ConsultationBanner";
@@ -57,8 +57,8 @@ const Index = () => {
       <HeroSection />
       <UniversitySearch />
       
-      {/* Student Video Carousel */}
-      <StudentCarousel />
+      {/* Official Instagram Feed Grid */}
+      <InstagramGrid />
       
       {/* Company Success Statistics Section */}
       <SuccessSection />

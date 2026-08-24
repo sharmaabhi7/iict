@@ -10,6 +10,7 @@ import akanshaImg from "@/assets/Akansha Singh.webp";
 import mazaImg from "@/assets/Maza Noor.webp";
 import { SEO } from "@/components/shared/SEO";
 import { useContent } from "@/contexts/ContentContext";
+import { InstagramGrid } from "@/components/InstagramGrid";
 
 const milestones = [
   { year: "1996", title: "Founded", desc: "Graam-Infotech PVT LTD established with a vision to democratize international education." },
@@ -308,6 +309,8 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      <InstagramGrid />
 
       <CTABanner />
       <Footer />
