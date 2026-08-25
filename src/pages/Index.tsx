@@ -9,7 +9,6 @@ import { ConsultationBanner } from "@/components/ConsultationBanner";
 import { DestinationsSection } from "@/components/DestinationsSection";
 import { CourseCategories } from "@/components/CourseCategories";
 import { BatchSelection } from "@/components/BatchSelection";
-import { CareerStories } from "@/components/CareerStories";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/shared/SEO";
@@ -77,9 +76,6 @@ const Index = () => {
       
       {/* Selection of MBBS Batch Packs */}
       <BatchSelection />
-      
-      {/* Student Success Stories & explore section */}
-      <CareerStories />
       
       {/* Frequently Asked Questions */}
       <FAQSection />
