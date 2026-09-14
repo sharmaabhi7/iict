@@ -23,6 +23,7 @@ import { SEO } from "@/components/shared/SEO";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/iict-logo.jpeg";
 import { useContent } from "@/contexts/ContentContext";
+import { trackWhatsAppConversion } from "@/lib/gtag";
 
 // Customized WhatsApp Brand Icon SVG
 const WhatsAppIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
@@ -212,6 +213,7 @@ export default function WhatsAppJoinPage() {
                   href={groupInviteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppConversion()}
                   className="group flex w-full items-center justify-center gap-2.5 rounded-full bg-emerald-500 hover:bg-emerald-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 transition-all hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <WhatsAppIcon className="h-6 w-6 shrink-0" />

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/iict-logo.jpeg"
+import { trackCallConversion, trackWhatsAppConversion } from "@/lib/gtag";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -54,7 +55,7 @@ export function Navbar() {
             <Phone className="h-8 w-8 text-red-600 p-1.5 border border-red-600 rounded-full" />
             <div className="flex flex-col">
               <span className="text-[10px] uppercase text-gray-500 font-medium">Call Us Now</span>
-              <a href="tel:9315717679" className="text-sm font-bold text-red-600 hover:underline">93157 17679</a>
+              <a href="tel:9315717679" onClick={() => trackCallConversion()} className="text-sm font-bold text-red-600 hover:underline">93157 17679</a>
             </div>
           </div>
 
@@ -64,7 +65,7 @@ export function Navbar() {
             </svg>
             <div className="flex flex-col">
               <span className="text-[10px] uppercase text-gray-500 font-medium">Whatsapp Us</span>
-              <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-500 hover:underline">93157 17679</a>
+              <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsAppConversion()} className="text-sm font-bold text-green-500 hover:underline">93157 17679</a>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { trackPixelEvent } from "@/lib/metaPixel";
+import { trackLeadFormConversion } from "@/lib/gtag";
 
 interface ChatMessage {
   sender: "bot" | "user";
@@ -91,13 +92,14 @@ export function FloatingActions() {
         });
       }
 
-      // Track Facebook Pixel Lead event
+      // Track Facebook Pixel & Google Ads Lead events
       trackPixelEvent("Lead", {
         content_name: "Live Chat Counseling",
         content_category: data.interest || "General Chat",
         value: 0,
         currency: "INR"
       });
+      trackLeadFormConversion();
 
       setMessages(prev => [
         ...prev.filter(m => m.text !== "Connecting and saving your request..."),

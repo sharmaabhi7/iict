@@ -12,8 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { SEO } from "@/components/shared/SEO";
-import { useContent } from "@/contexts/ContentContext";
 import { trackPixelEvent } from "@/lib/metaPixel";
+import { trackLeadFormConversion, trackWhatsAppConversion } from "@/lib/gtag";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -92,13 +92,14 @@ export default function ContactPage() {
         });
       }
 
-      // Track Facebook Pixel Lead event
+      // Track Facebook Pixel Lead event & Google Ads Lead Form conversion
       trackPixelEvent("Lead", {
         content_name: "Contact Us Form",
         content_category: data.service,
         value: 0,
         currency: "INR"
       });
+      trackLeadFormConversion();
 
       toast.success("Thank you! We'll get back to you within 24 hours.");
       form.reset();
@@ -240,7 +241,7 @@ export default function ContactPage() {
             className="space-y-6 lg:col-span-2"
           >
             {/* WhatsApp */}
-             <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
+             <a href="https://wa.me/919315717679" target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsAppConversion()} className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-shadow hover:shadow-card-hover">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100">
                 <MessageCircle className="h-6 w-6 text-green-600" />
               </div>

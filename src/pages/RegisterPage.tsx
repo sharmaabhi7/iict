@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { CheckCircle2, ChevronRight, Clipboard, HelpCircle, Loader2, Sparkles } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { trackPixelEvent } from "@/lib/metaPixel";
+import { trackLeadFormConversion } from "@/lib/gtag";
 
 const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -126,13 +127,14 @@ export default function RegisterPage() {
         body: searchParams.toString(),
       });
 
-      // Track Facebook Pixel Lead event
+      // Track Facebook Pixel & Google Ads Lead events
       trackPixelEvent("Lead", {
         content_name: data.program || "General Registration",
         content_category: data.country || "General",
         value: 0,
         currency: "INR"
       });
+      trackLeadFormConversion();
 
       toast.success("Successfully Registered!", {
         description: "Your information is securely stored in our Google Sheets databases. We will contact you shortly.",
