@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Zap, LifeBuoy, Award, ArrowRight, Menu, X, Sun, Moon, Check, CheckCircle2, Calendar } from "lucide-react";
 import { SEO } from "@/components/shared/SEO";
+import { useContent } from "@/contexts/ContentContext";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/iict-logo.jpeg";
 
 export default function N8nTrainingPage() {
+  const { content } = useContent();
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("curriculum");
@@ -177,12 +179,16 @@ export default function N8nTrainingPage() {
     },
   ];
 
-  // SEO Schema
+  // SEO Metadata & Schema
+  const pageSeo = content.pages.n8nTraining;
+  const seoTitle = pageSeo?.title || "n8n AI Agent Training in Hindi | 10 AI Agents for ₹199";
+  const seoDescription = pageSeo?.description || "Learn n8n and AI Agent Development in Hindi. Build 10 real-world AI agents in 3 days with live practical training, projects, and IICT certificate for just ₹199.";
+
   const n8nTrainingSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "n8n AI Agent Training in Hindi | 10 AI Agents for ₹199",
-    "description": "Learn n8n and AI Agent Development in Hindi. Build 10 real-world AI agents in 3 days with live practical training, projects, and IICT certificate for just ₹199.",
+    "name": seoTitle,
+    "description": seoDescription,
     "provider": {
       "@type": "EducationalOrganization",
       "name": "IICT Graam-Infotech",
@@ -193,9 +199,10 @@ export default function N8nTrainingPage() {
   return (
     <div id="top" className="min-h-screen scroll-smooth bg-background text-foreground transition-colors duration-300 font-sans">
       <SEO
-        title="n8n AI Agent Training in Hindi | 10 AI Agents for ₹199"
-        description="Learn n8n and AI Agent Development in Hindi. Build 10 real-world AI agents in 3 days with live practical training, projects, and IICT certificate for just ₹199."
+        title={seoTitle}
+        description={seoDescription}
         path="/n8n-training"
+        exactTitle={true}
         schema={n8nTrainingSchema}
       />
 

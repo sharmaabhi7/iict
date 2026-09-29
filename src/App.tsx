@@ -63,6 +63,7 @@ const App = () => (
                 <Route path="/mbbs-abroad" element={<MBBSAbroadPage />} />
                 <Route path="/cpl-training" element={<CPLTrainingPage />} />
                 <Route path="/n8n-training" element={<N8nTrainingPage />} />
+                <Route path="/n8n" element={<N8nTrainingPage />} />
                 <Route path="/countries/germany" element={<GermanyProgramPage />} />
                 <Route path="/countries/:countryId" element={<CountryDetailPage />} />
                 <Route path="/countries" element={<CountriesPage />} />

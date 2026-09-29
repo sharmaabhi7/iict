@@ -9,6 +9,7 @@ interface SEOProps {
   type?: "website" | "article" | "profile";
   schema?: Record<string, any> | Record<string, any>[];
   keywords?: string;
+  exactTitle?: boolean;
 }
 
 export function SEO({
@@ -19,6 +20,7 @@ export function SEO({
   type = "website",
   schema,
   keywords,
+  exactTitle = false,
 }: SEOProps) {
   const { content } = useContent();
   
@@ -32,7 +34,7 @@ export function SEO({
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   const canonicalUrl = `${baseUrl}${cleanPath === "/" ? "" : cleanPath}`;
 
-  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+  const fullTitle = exactTitle || title.includes(siteName) ? title : `${title} | ${siteName}`;
 
   return (
     <Helmet>

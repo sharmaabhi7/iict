@@ -579,6 +579,9 @@ export default function AdminPage() {
                     <TabsTrigger value="cplTraining" className="w-full justify-start rounded-lg text-xs font-bold py-2 px-3 text-slate-400 data-[state=active]:bg-teal-600 data-[state=active]:text-white">
                       CPL Training
                     </TabsTrigger>
+                    <TabsTrigger value="n8nTraining" className="w-full justify-start rounded-lg text-xs font-bold py-2 px-3 text-slate-400 data-[state=active]:bg-teal-600 data-[state=active]:text-white">
+                      n8n AI Training
+                    </TabsTrigger>
                     <TabsTrigger value="blog" className="w-full justify-start rounded-lg text-xs font-bold py-2 px-3 text-slate-400 data-[state=active]:bg-teal-600 data-[state=active]:text-white">
                       Blog
                     </TabsTrigger>
