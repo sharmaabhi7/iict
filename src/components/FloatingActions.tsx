@@ -213,16 +213,7 @@ export function FloatingActions() {
 
   return (
     <>
-      {/* Side Banner */}
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:block">
-        <div 
-          onClick={() => setIsOpen(true)}
-          className="bg-[#004080] text-white py-4 px-2 rounded-l-md shadow-lg cursor-pointer hover:bg-[#003060] transition-colors" 
-          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-        >
-          <span className="text-sm font-semibold tracking-wider">MBBS Admissions 26-27</span>
-        </div>
-      </div>
+
 
       {/* Chat Window */}
       <AnimatePresence>

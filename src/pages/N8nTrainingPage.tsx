@@ -181,8 +181,8 @@ export default function N8nTrainingPage() {
   const n8nTrainingSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Employment-Focused AI Agent Development Training",
-    "description": "3-day Hindi training in n8n AI Agent Development. Build 10 real-world projects and get an IICT certificate. Only ₹199.",
+    "name": "n8n AI Agent Training in Hindi | 10 AI Agents for ₹199",
+    "description": "Learn n8n and AI Agent Development in Hindi. Build 10 real-world AI agents in 3 days with live practical training, projects, and IICT certificate for just ₹199.",
     "provider": {
       "@type": "EducationalOrganization",
       "name": "IICT Graam-Infotech",
@@ -193,8 +193,8 @@ export default function N8nTrainingPage() {
   return (
     <div id="top" className="min-h-screen scroll-smooth bg-background text-foreground transition-colors duration-300 font-sans">
       <SEO
-        title="Employment-Focused AI Agent Development Training | n8n | Hindi"
-        description="3-day Hindi training in n8n AI Agent Development. Build 10 real-world projects, add them to your portfolio, and improve your chances of getting an IT job. Only ₹199."
+        title="n8n AI Agent Training in Hindi | 10 AI Agents for ₹199"
+        description="Learn n8n and AI Agent Development in Hindi. Build 10 real-world AI agents in 3 days with live practical training, projects, and IICT certificate for just ₹199."
         path="/n8n-training"
         schema={n8nTrainingSchema}
       />
